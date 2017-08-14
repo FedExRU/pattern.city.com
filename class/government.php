@@ -11,34 +11,56 @@ class Government
 
 	private static $personData 	= array();
 
-	public static function getGovernmentPerson($position, array $data){
-		if(!isset($instances[$position]) && !(self::$instances[$position] instanceof self)){
-			self::$instances[$position] = new self($position);
-			self::parseGovernmentData($position, $data);
+	public static function getGovernmentPerson(array $data){
+		if(!isset($instances[$data['position']]) && !(self::$instances[$data['position']] instanceof self)){
+			self::$instances[$data['position']] = new self($data['position']);
+			self::parseGovernmentData($data);
 		}
 
-		return self::$instances[$position];
+		return self::$instances[$data['position']];
 	}
 
-	private static function parseGovernmentData($position, $sampleData){
+	private static function parseGovernmentData($sampleData){
 		if(!isset($sampleData['firstName'], $sampleData['lastName'], $sampleData['hireDate'])){
-			throw new Exception("First name, last name or hire date was not specified for ".$position,1);	
+			throw new Exception("First name, last name or hire date was not specified for ".$sampleData['position'],1);	
 		}
-		self::setFirstName($position, $sampleData['firstName']);
-		self::setLastName($position, $sampleData['lastName']);
-		self::setHireDate($position, $sampleData['hireDate']);
+		self::setFirstName($sampleData['position'], $sampleData['firstName']);
+		self::setLastName($sampleData['position'], $sampleData['lastName']);
+		self::setHireDate($sampleData['position'], $sampleData['hireDate']);
+
+		switch ($sampleData['position']) {
+			case 'Chief Doctor':
+				self::setImage($sampleData['position'],"chiefDoctor.png");
+				break;
+
+			case 'Police Captain':
+				self::setImage($sampleData['position'],"asdasasdasdas");
+				break;
+
+			case 'City Judge':
+				self::setImage($sampleData['position'],"asdassdfsd");
+				break;
+			
+			default:
+				self::setImage($sampleData['position'],"null");
+				break;
+		}
 	}
 
 	public static function setFirstName($position, $newFirstName){
-		return !empty(self::$personData[$position]['firstName'] = $newFirstName);
+		self::$personData[$position]['firstName'] = $newFirstName;
 	}
 
 	public static function setLastName($position, $newLastName){
-		return !empty(self::$personData[$position]['lastName'] = $newLastName);
+		self::$personData[$position]['lastName'] = $newLastName;
 	}
 
 	public static function setHireDate($position, $newHireDate){
-		return !empty(self::$personData[$position]['hireDate'] = $newHireDate);
+		self::$personData[$position]['hireDate'] = $newHireDate;
+	}
+
+	public static function setImage($position, $newImage){
+		self::$personData[$position]['image'] = $newImage;
 	}
 
 	public static function getFirstName($position){
@@ -53,8 +75,12 @@ class Government
 		return self::$personData[$position]['hireDate'];
 	}
 
-	public static function sayHello($position){
-		echo "Hello, my name is ".self::getFirstName($position)." ".self::getLastName($position)."! I'm at your services from ".self::getHireDate($position);
+	public static function getImage($position){
+		return self::$personData[$position]['image'];
+	}
+
+	public static function getIntroduceText($position){
+		return "Hello, my name is ".self::getFirstName($position)." ".self::getLastName($position)."! I'm at your services from ".self::getHireDate($position)." as the ".$position." in this city.";
 	}
 
 	private function __construct(){}

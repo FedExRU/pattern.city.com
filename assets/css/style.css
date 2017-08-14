@@ -1,37 +1,41 @@
+/*[--------------
+ * 0. Global styles
+ *--------------]
+ */
+
 *{
-	/*background: url("../img/texture.png");*/
 	transition: all 0.2s ease-in-out;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 }
 
-.orange{
-	background: #e18a29;
+.black{
+	background: #4b4e53;
 }
 
-.red{
-	background: #c83605;
+.cian{
+	background: #66acb4;
+}
+
+.orange{
+	background: #e18a29;
 }
 
 .pink{
 	background: #ec7162;
 }
 
+.red{
+	background: #c83605;
+}
+
 .skyblue{
 	background: #6fc5e8;
 }
 
-.black{
-	background: #4b4e53;
-}
-
 .yellow{
 	background: #f2bb56;
-}
-
-.cian{
-	background: #66acb4;
 }
 
 #main{
@@ -61,7 +65,7 @@
 }
 
 /*[--------------
- * 0. Patterns
+ * 0.1 Patterns
  *--------------]
  */
 
@@ -158,7 +162,6 @@
 	width: 100%;
 }
 
-
 #main #patterns > .wrapper .pattern:active div.go{
     margin-top: 40px;
 	width: 90%;
@@ -171,32 +174,85 @@
 }
 
 /*[--------------
- * 4. Mayor meeting
+ * 4 Mayor meeting / Government meeting
  *--------------]
  */
 
- #mayor-meeting{
- 	width: 100%;
-    height: 200px;
- }
-
- #mayor-meeting img{
- 	float: left;
-    height: 200px;
-    width: 200px;
- }
-
- #mayor-meeting #conversation{
+#mayor-meeting #conversation, #government-meeting #conversation{
  	float: right;
     max-width: 430px;
     width: 100%;
- }
+}
 
-  #mayor-meeting #conversation p{
+ #mayor-meeting img, #government-meeting img{
+	float: left;
+	height: 200px;
+	margin-top: 17px;
+	width: 200px;
+}
+
+ /*[--------------
+ * 4.1 Mayor meeting
+ *--------------]
+ */
+
+#mayor-meeting{
+ 	width: 100%;
+    height: 200px;
+}
+
+#mayor-meeting #conversation p{
  	display: inline-block;
     float: left;
     font-size: 22px;
     padding-left: 20px;
     text-align: left;
     margin: 18% 0px;
- }
+}
+
+
+/*[--------------
+ * 5. Government meeting
+ *--------------]
+ */
+
+#government-meeting #conversation{
+	margin-top: 35px;
+}
+
+#government-meeting #conversation p{
+ 	display: inline-block;
+    float: left;
+    font-size: 20px;
+    margin: 0px;
+    margin-top: 5px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+#government-meeting #conversation p strong{
+ 	float: left;
+ 	margin-right: 5px;
+}
+
+#government-meeting #conversation p span{
+ 	float: right;
+}
+
+#government-meeting #conversation p span a{
+	color: #000;
+ 	text-decoration: none;
+}
+
+#government-meeting #conversation p span a:hover{
+	color: #66bb6a;
+ 	text-decoration: none;
+}
+
+#government-meeting #conversation p span a:last-child:hover{
+	color: #ef5350;
+}
+
+
+
+
