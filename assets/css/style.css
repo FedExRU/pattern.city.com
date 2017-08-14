@@ -1,0 +1,202 @@
+*{
+	/*background: url("../img/texture.png");*/
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+}
+
+.orange{
+	background: #e18a29;
+}
+
+.red{
+	background: #c83605;
+}
+
+.pink{
+	background: #ec7162;
+}
+
+.skyblue{
+	background: #6fc5e8;
+}
+
+.black{
+	background: #4b4e53;
+}
+
+.yellow{
+	background: #f2bb56;
+}
+
+.cian{
+	background: #66acb4;
+}
+
+#main{
+	margin: 0 auto;
+	max-width: 1300px;
+	width: 100%;
+}
+
+#main header > h1.main-title, h2.subtitle{
+	margin: 100px auto;
+	text-align: center;
+}
+
+#main header > h2.subtitle{
+	margin-top: 20px;
+}
+
+#main header > h1.main-title{
+	margin-bottom: 20px;
+}
+
+.wrapper{
+    height: 300px;
+    max-width: 590px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/*[--------------
+ * 0. Patterns
+ *--------------]
+ */
+
+#main #patterns > .wrapper .pattern{
+    border-radius: 5%;
+    -webkit-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.35);
+    -moz-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.35);
+    box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.35);
+    cursor: pointer;
+    display: inline-block;
+    height: 240px;
+	max-width: 260px;
+	position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#main #patterns > .wrapper .pattern:hover{
+	-webkit-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
+    -moz-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
+    box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
+	padding: 25px;
+}
+
+#main #patterns > .wrapper .pattern:active{
+	-webkit-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.1);
+    -moz-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.1);
+    box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.1);
+	padding: 0px;
+}
+
+#main #patterns > .wrapper .pattern:nth-child(odd){
+	float: left;
+}
+
+#main #patterns > .wrapper .pattern:nth-child(even){
+	float: right;
+}
+
+/*[--------------
+ * 1. Pattern's image
+ *--------------]
+ */
+
+
+#main #patterns > .wrapper .pattern img{
+    display: block;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 200px;
+}
+
+#main #patterns > .wrapper .pattern:hover img{
+	height: 10px;
+    margin-top: 10px;
+	width: 220px;
+	opacity: 0;
+}
+
+#main #patterns > .wrapper .pattern:active img{
+	height: 0px;
+	margin-top: 30px;
+	width: 180px;
+}
+
+/*[--------------
+ * 2. Pattern's heading h2
+ *--------------]
+ */
+
+#main #patterns > .wrapper .pattern h2{
+	opacity: 0;
+}
+
+#main #patterns > .wrapper .pattern:hover h2{
+	 opacity: 1;
+}
+
+#main #patterns > .wrapper .pattern:active h2{
+	font-size: 1.4em;
+	padding: 0px 10px;
+}
+
+/*[--------------
+ * 3. Pattern's go div
+ *--------------]
+ */
+
+#main #patterns > .wrapper .pattern div.go{
+	margin: 0 auto;
+	margin-top: 50px;
+	height: 30px;
+	width: 100%;
+}
+
+
+#main #patterns > .wrapper .pattern:active div.go{
+    margin-top: 40px;
+	width: 90%;
+}
+
+#main #patterns > .wrapper .pattern div.go h3{
+	color: #fff;
+	line-height: 30px;
+	text-align: center;
+}
+
+/*[--------------
+ * 4. Mayor meeting
+ *--------------]
+ */
+
+ #mayor-meeting{
+ 	width: 100%;
+    height: 200px;
+ }
+
+ #mayor-meeting img{
+ 	float: left;
+    height: 200px;
+    width: 200px;
+ }
+
+ #mayor-meeting #conversation{
+ 	float: right;
+    max-width: 430px;
+    width: 100%;
+ }
+
+  #mayor-meeting #conversation p{
+ 	display: inline-block;
+    float: left;
+    font-size: 22px;
+    padding-left: 20px;
+    text-align: left;
+    margin: 18% 0px;
+ }

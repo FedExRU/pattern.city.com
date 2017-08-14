@@ -233,7 +233,6 @@ class House implements Structure
 
 $hospital = new Hospital();
 $hospital->buildRoof("sideing","wooden");
-var_dump('expression');
-die();
+
 
 ?>
