@@ -21,7 +21,7 @@ function callChiefDoctor(){
 		'position' : 'Chief Doctor',
 		'firstName' : 'Gilbert',
 		'lastName' : 'Myers',
-		'hireDate' : '12.17.2003'
+		'hireDate' : '12.02.2003'
 	};
 	$.ajax({
 		type: "POST",
@@ -29,10 +29,44 @@ function callChiefDoctor(){
 		data: {action: 'government', personalData},
 		success: function(data){
 			loadGovernmentHtml(data);
-			console.log(data);
 		}
 	});
 }
+
+function callCityJudge(){
+	var personalData = {
+		'position' : 'City Judge',
+		'firstName' : 'Margaret',
+		'lastName' : 'Thompson',
+		'hireDate' : '01.07.2008'
+	};
+	$.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: 'government', personalData},
+		success: function(data){
+			loadGovernmentHtml(data);
+		}
+	});
+}
+
+function callPoliceCaptain(){
+	var personalData = {
+		'position' : 'Police Captain',
+		'firstName' : 'Patrick',
+		'lastName' : 'Cooper',
+		'hireDate' : '03.10.2006'
+	};
+	$.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: 'government', personalData},
+		success: function(data){
+			loadGovernmentHtml(data);
+		}
+	});
+}
+
 
 function callMayor(){
 	$.ajax({

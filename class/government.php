@@ -34,15 +34,11 @@ class Government
 				break;
 
 			case 'Police Captain':
-				self::setImage($sampleData['position'],"asdasasdasdas");
+				self::setImage($sampleData['position'],"policeCaptain.png");
 				break;
 
 			case 'City Judge':
-				self::setImage($sampleData['position'],"asdassdfsd");
-				break;
-			
-			default:
-				self::setImage($sampleData['position'],"null");
+				self::setImage($sampleData['position'],"judge.png");
 				break;
 		}
 	}
