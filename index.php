@@ -9,6 +9,8 @@
 </head>
 <body>
 
+<div style = "background: url(https://media.giphy.com/media/9He7MYoAaKXe0/giphy.gif)"></div>
+
 	<div id="main">
 
 		<header>
@@ -37,7 +39,7 @@
 			</section>
 
 			<section class="wrapper">
-				<div class="pattern">
+				<div data-remodal-target="modal" data-modal="building" class="pattern">
 					<img src="assets/img/patterns/build.png" alt="Building">
 					<h2>Maybe we'll improve the city? Let's build something!</h2>
 					<div class="go skyblue">

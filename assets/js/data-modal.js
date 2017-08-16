@@ -11,10 +11,22 @@ $(document).ready(function(){
 			case 'government':
 				loadGovernmentSecretatyHtml();
 				break;
+			case 'building':
+				loadBuildingHtml();
+				break;
+
 		}
 	})
 
 })
+
+function loadBuildingHtml(){
+	$(".data-content").load('layouts/building/building.html');
+}
+
+function callBuildingSettingsHtml(){
+	$(".data-content").load('layouts/building/buildingSettings.html');
+}
 
 function callChiefDoctor(){
 	var personalData = {

@@ -174,17 +174,17 @@
 }
 
 /*[--------------
- * 4 Mayor meeting / Government meeting
+ * 4 Mayor meeting / Government meeting / Building
  *--------------]
  */
 
-#mayor-meeting #conversation, #government-meeting #conversation{
+#mayor-meeting #conversation, #government-meeting #conversation, #building #conversation{
  	float: right;
     max-width: 430px;
     width: 100%;
 }
 
- #mayor-meeting img, #government-meeting img{
+ #mayor-meeting img, #government-meeting img, #building img{
 	float: left;
 	height: 200px;
 	margin-top: 17px;
@@ -253,6 +253,56 @@
 	color: #ef5350;
 }
 
+/*[--------------
+ * 6. Building
+ *--------------]
+ */
 
+#building #conversation p{
+ 	font-size: 19px;
+    margin: 9% 0px;
+    padding-left: 20px;
+    text-align: left;
+}
 
+#building .structure{
+	border-top: 2px solid mediumturquoise;
+	cursor: pointer;
+	display: block;
+	height: 190px;
+	padding-bottom: 10px;
+
+}
+
+#building .structure:last-child{
+	border-bottom: 2px solid mediumturquoise;
+}
+
+#building .structure:hover{
+	background: #eee;
+}
+
+#building .structure img{
+	clear: both;
+    float: left;
+    height: 170px;
+    width: 170px;
+}
+
+#building .structure .structure-settings{
+	float: right;
+	font-size: 16px;
+    max-width: 448px;
+    text-align: left;
+    width: 100%;
+}
+
+#building .structure .structure-settings .structure-params table tr td label{
+	cursor: pointer;
+	padding-right: 10px;
+}
+
+#building-choose-actions{
+	float: right;
+}
 
