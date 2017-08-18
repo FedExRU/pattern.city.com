@@ -20,12 +20,22 @@ $(document).ready(function(){
 
 })
 
-function loadBuildingHtml(){
-	$(".data-content").load('layouts/building/building.html');
-}
+function callBuilding(){
+	var structureForm = $('.structure.structure-active form');
+	
+	validateForm(structureForm, 'structure');
 
-function callBuildingSettingsHtml(){
-	$(".data-content").load('layouts/building/buildingSettings.html');
+	var structureData = structureForm.serialize();
+
+	 $.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: "building",  structureData},
+		success: function(data){
+			var orderBuildingData = $.parseJSON(data);
+			loadBuildingAnimation(orderBuildingData);
+		}
+	});
 }
 
 function callChiefDoctor(){
@@ -62,6 +72,17 @@ function callCityJudge(){
 	});
 }
 
+function callMayor(){
+	$.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: 'mayor'},
+		success: function(data){
+			loadMayorHtml(data);
+		}
+	})
+}
+
 function callPoliceCaptain(){
 	var personalData = {
 		'position' : 'Police Captain',
@@ -79,23 +100,28 @@ function callPoliceCaptain(){
 	});
 }
 
+function loadBuildingAnimation(sampleData){
+	$(".data-content").load('layouts/building/buildingAnimation.html', function(){
+		$(this).find("#animation-content").css("background", "url("+sampleData.image+")");
+		$(this).find("#construction-order h2").text(sampleData.orderRoof);
+	});
+}
 
-function callMayor(){
-	$.ajax({
-		type: "POST",
-		url: "functions/app.php",
-		data: {action: 'mayor'},
-		success: function(data){
-			loadMayorHtml(data);
-		}
-	})
+function loadBuildingHtml(){
+	$(".data-content").load('layouts/building/building.html');
+}
+
+function loadBuildingSettingsHtml(){
+	$(".data-content").load('layouts/building/buildingSettings.html', function(){
+		checkStructure();
+	});
 }
 
 function loadGovernmentHtml(sampleData){
-	var governmentData = $.parseJSON(sampleData);
-	var governmentName = governmentData.governmentName;
+	var governmentData 	= $.parseJSON(sampleData);
+	var governmentName 	= governmentData.governmentName;
 	var governmentImage = governmentData.governmentImage;
-	var governmentText = governmentData.governmentGreetings;
+	var governmentText 	= governmentData.governmentGreetings;
 	$(".data-content").load('layouts/government/government.html', function(){
 		var dialogWindow = $(this).find("#government-meeting #conversation p");
 		var dialogImage = $(this).find("#government-meeting img");

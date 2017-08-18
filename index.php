@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Welcome to Patter City</title>
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/libs/css/remodal.css">
-	<link rel="stylesheet" href="assets/libs/css/remodal-default-theme.css">
+	<title>Welcome to Pattern City</title>
+	<meta name="description" 	content="Illustrative examples of design patterns">
+	<meta property="og:title" 	content="Pattern City" />
+	<meta property="og:type" 	content="website" />
+	<meta property="og:url" 	content="http://localhost/pattern.city.com/">
+	<meta property="og:image" 	content="assets/img/patterns/mayor.png" />
+	<link rel="stylesheet" 		href="assets/css/style.css">
+	<link rel="stylesheet" 		href="assets/libs/css/remodal.css">
+	<link rel="stylesheet" 		href="assets/libs/css/remodal-default-theme.css">
 </head>
 <body>
 
@@ -87,20 +92,7 @@
 
 		<div class="remodal" data-remodal-id="modal">
   			<button data-remodal-action="close" class="remodal-close"></button>
-  			<div class="data-content">
-  				<!-- <h1>Meeting with mayor</h1>
-  				<section id="mayor-meeting">
-  					<img src="assets/img/mayor/secretary.png" alt="Secretry">
-  					<article id="conversation">
-  						<p><strong>Secretary:</strong> Mr. Mayor is ready to meet with you.</p>
-  					</article>
-  				</section>
- 				<br>
- 				<section id="mayor-meeting-actions">
-	  				<button data-remodal-action="cancel" class="remodal-cancel">Not now</button>
-	  				<button class="remodal-confirm">I'm ready too</button>
- 				</section>  -->
- 			</div>
+  			<div class="data-content"></div>
 		</div>
 
 		<footer>	</footer>
@@ -110,4 +102,6 @@
 <script src="assets/libs/js/jquery-3.2.1.min.js"></script>
 <script src="assets/libs/js/remodal.min.js"></script>
 <script src="assets/js/data-modal.js"></script>
+<script src="assets/js/customization.js"></script>
+<script src="assets/js/validation.js"></script>
 </html>

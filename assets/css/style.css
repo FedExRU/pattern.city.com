@@ -10,6 +10,20 @@
 	-o-transition: all 0.2s ease-in-out;
 }
 
+input{
+	text-indent: 5px;
+    padding: 3px 0px;
+}
+
+.acception{
+	border: 2px solid gold;;
+}
+
+.disabled{
+	background: #eee !important;
+    color: #ccc !important;
+}
+
 .black{
 	background: #4b4e53;
 }
@@ -20,6 +34,10 @@
 
 .orange{
 	background: #e18a29;
+}
+
+.padding-bottom-55{
+	padding-bottom: 55px !important;
 }
 
 .pink{
@@ -55,6 +73,16 @@
 
 #main header > h1.main-title{
 	margin-bottom: 20px;
+}
+
+.warning{
+	border: 2px solid #ef5350;
+}
+
+.warning-text{
+    color: red;
+    font-size: 11px;
+	margin: 0px;
 }
 
 .wrapper{
@@ -257,6 +285,35 @@
  * 6. Building
  *--------------]
  */
+#animation-content{
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 100%;
+    display: block;
+	height: 400px;
+    margin: 0 auto;
+    transition: opacity 4.3s ease-in-out;
+	-webkit-transition: opacity 4.3s ease-in-out;
+	-moz-transition: opacity 4.3s ease-in-out;
+	-o-transition: opacity 4.3s ease-in-out;
+    opacity: 0;
+    -moz-opacity: 0;
+    -o-opacity: 0;
+    -webkit-opacity: 0;
+    width: 400px;
+}
+
+#construction-order{
+	display: none;
+	height: 370px;
+    width: 370px;
+    border-radius: 100%;
+    margin: 0 auto;
+}
+
+#building-choose-actions{
+	float: right;
+}
 
 #building #conversation p{
  	font-size: 19px;
@@ -269,7 +326,7 @@
 	border-top: 2px solid mediumturquoise;
 	cursor: pointer;
 	display: block;
-	height: 190px;
+	height: 200px;
 	padding-bottom: 10px;
 
 }
@@ -280,6 +337,12 @@
 
 #building .structure:hover{
 	background: #eee;
+}
+
+#building .structure.structure-active{
+	background: #FFFF66;
+    border-top: 2px solid transparent;
+    box-shadow: 3px 6px 95px 18px gold;
 }
 
 #building .structure img{
@@ -302,7 +365,5 @@
 	padding-right: 10px;
 }
 
-#building-choose-actions{
-	float: right;
-}
+
 

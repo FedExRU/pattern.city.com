@@ -28,21 +28,21 @@ interface Doors{
 
 class HospitalRoof implements Roof{
 	public function buildRoof($type, $material){
-		echo "Construction of ".$type." ".$material." roof for a hospital complete!";
+		return "Construction of ".$type." ".$material." roof for a hospital complete!";
 	}
 
 }
 
 class SupermarketRoof implements Roof{
 	public function buildRoof($type, $material){
-		echo "Construction of ".$type." ".$material." roof for a supermarket complete!";
+		return "Construction of ".$type." ".$material." roof for a supermarket complete!";
 	}
 
 }
 
 class HouseRoof implements Roof{
 	public function buildRoof($type, $material){
-		echo "Construction of ".$type." ".$material." roof for a house complete!";
+		return "Construction of ".$type." ".$material." roof for a house complete!";
 	}
 }
 
@@ -53,19 +53,19 @@ class HouseRoof implements Roof{
 
 class HospitalWalls implements Walls{
 	public function buildWalls($type, $material, $heigth, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." walls for a hospital complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." walls for a hospital complete!";
 	}
 }
 
 class SupermarketWalls implements Walls{
 	public function buildWalls($type, $material, $heigth, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." walls for a supermarket complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." walls for a supermarket complete!";
 	}
 }
 
 class HouseWalls implements Walls{
 	public function buildWalls($type, $material, $heigth, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." walls for a house complete!";
+		return "Construction of ".$heigth."-meter ".$type." ".$material." walls for a house complete!";
 	}
 }
 
@@ -75,20 +75,20 @@ class HouseWalls implements Walls{
 
 class HospitalWindows implements Windows{
 	public function buildWindows($type, $material, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." windows for a hospital complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." windows for a hospital complete!";
 	}
 
 }
 
 class SupermarketWindows implements Windows{
 	public function buildWindows($type, $material, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." windows for a supermarket complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." windows for a supermarket complete!";
 	}
 }
 
 class HouseWindows implements Windows{
 	public function buildWindows($type, $material, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." windows for a house complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." windows for a house complete!";
 	}
 }
 
@@ -98,20 +98,20 @@ class HouseWindows implements Windows{
 
 class HospitalDoors implements Doors{
 	public function buildDoors($type, $material, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." doors for a hospital complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." doors for a hospital complete!";
 	}
 }
 
 class SupermarketDoors implements Doors{
 	public function buildDoors($type, $material, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." doors for a supermarket complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." doors for a supermarket complete!";
 	}
 
 }
 
 class HouseDoors implements Doors{
 	public function buildDoors($type, $material, $count){
-		echo "Construction of ".$count."-th ".$type." ".$material." doors for a house complete!";
+		return "Construction of ".$count."-th ".$type." ".$material." doors for a house complete!";
 	}
 }
 
@@ -145,19 +145,19 @@ class Hospital implements Structure
 	}
 
 	public function buildRoof($type, $material){
-		$this->roof->buildRoof($type, $material);
+		return $this->roof->buildRoof($type, $material);
 	}
 
 	public function buildWalls($type, $material, $heigth, $count){
-		$this->walls->buildWalls($type, $material, $heigth, $count);
+		return $this->walls->buildWalls($type, $material, $heigth, $count);
 	}
 
 	public function buildWindows($type, $material, $count){
-		$this->windows->buildWindows($type, $material, $count);
+		return $this->windows->buildWindows($type, $material, $count);
 	}
 
 	public function buildDoors($type, $material, $count){
-		$this->doors->buildDoors($type, $material, $count);
+		return $this->doors->buildDoors($type, $material, $count);
 	}
 }
 
@@ -180,19 +180,19 @@ class Supermarket implements Structure
 	}
 
 	public function buildRoof($type, $material){
-		$this->roof->buildRoof($type, $material);
+		return $this->roof->buildRoof($type, $material);
 	}
 
 	public function buildWalls($type, $material, $heigth, $count){
-		$this->walls->buildWalls($type, $material, $heigth, $count);
+		return $this->walls->buildWalls($type, $material, $heigth, $count);
 	}
 
 	public function buildWindows($type, $material, $count){
-		$this->windows->buildWindows($type, $material, $count);
+		return $this->windows->buildWindows($type, $material, $count);
 	}
 	
 	public function buildDoors($type, $material, $count){
-		$this->doors->buildDoors($type, $material, $count);
+		return $this->doors->buildDoors($type, $material, $count);
 	}
 }
 
@@ -215,24 +215,20 @@ class House implements Structure
 	}
 
 	public function buildRoof($type, $material){
-		$this->roof->buildRoof($type, $material);
+		return $this->roof->buildRoof($type, $material);
 	}
 
 	public function buildWalls($type, $material, $heigth, $count){
-		$this->walls->buildWalls($type, $material, $heigth, $count);
+		return $this->walls->buildWalls($type, $material, $heigth, $count);
 	}
 
 	public function buildWindows($type, $material, $count){
-		$this->windows->buildWindows($type, $material, $count);
+		return $this->windows->buildWindows($type, $material, $count);
 	}
 	
 	public function buildDoors($type, $material, $count){
-		$this->doors->buildDoors($type, $material, $count);
+		return $this->doors->buildDoors($type, $material, $count);
 	}
 }
-
-$hospital = new Hospital();
-$hospital->buildRoof("sideing","wooden");
-
 
 ?>

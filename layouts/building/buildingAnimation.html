@@ -1,0 +1,52 @@
+<section id = "animation-content"> 
+	
+</section>
+
+<section id = "construction-order"> 
+	<h1>Сonstruction report</h1>
+	<img src="" alt="Structure">
+	<table>
+		<tr>
+			<td>
+				<img src="assets/img/building/roof.png" alt="Roof">
+			</td>
+			<td>
+				<h2></h2>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="assets/img/building/wall.png" alt="Walls">
+			</td>
+			<td>
+				<h2></h2>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="assets/img/building/window.png" alt="Windows">
+			</td>
+			<td>
+				<h2></h2>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="assets/img/building/door.png" alt="Doors">
+			</td>
+			<td>
+				<h2></h2>
+			</td>	
+		</tr>
+	</table>
+</section>
+
+<script>
+	$(document).ready(function(){
+		$('#animation-content').css("opacity", '1');
+		setTimeout(function() {
+			$('#animation-content').remove();
+			$('#construction-order').fadeIn(400);
+		}, 3500);
+	})
+</script>
