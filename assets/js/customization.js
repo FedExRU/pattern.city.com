@@ -23,7 +23,13 @@ function checkStructure(){
 
 		$('.structure input').click(function(e){
 			$(this).removeClass();
-			$(this).next().remove();
+			$(this).nextAll().remove();
+			e.stopPropagation();
+		})
+
+		$('.structure input').focus(function(e){
+			$(this).removeClass();
+			$(this).nextAll().remove();
 			e.stopPropagation();
 		})
 
@@ -39,7 +45,7 @@ function checkStructure(){
 
 	function removeWarnings(){
 		$('.structure input').each(function(){
-				$(this).removeClass();
+			$(this).removeClass();
 		});
 
 		$('.structure .warning-text').each(function(){

@@ -31,8 +31,6 @@ if($_POST['action'] == "government"){
 	echo json_encode($introduceData);
 }
 
-$_POST['action'] = "building";
-
 if($_POST['action'] == "building"){
 
 	include("../class/building.php");
@@ -43,47 +41,55 @@ if($_POST['action'] == "building"){
 		(!empty($data)) ?: die("Empty value for ".$key." field!");
 	}
 
-	$structure 	= null;
-	$order 		= [];
+	$structure 		= null;
+	$report 		= [];
+
+	$report['date'] = date("d.m.Y");
 
 	switch ($output['buildType']) {
 		case 'house':
 			$structure = new House();
-			$order ['image'] = 'https://media.giphy.com/media/9He7MYoAaKXe0/giphy.gif';
+			$report ['animation'] = 'https://media.giphy.com/media/9He7MYoAaKXe0/giphy.gif';
+			$report ['completeStructureImage'] = 'houseComplete.png';
+			$report ['structureType'] = 'House';
 			break;
 		case 'hospital':
 			$structure = new Hospital();
-			$order ['image'] = 'https://cdn.dribbble.com/users/174036/screenshots/1473571/22-travel-agency.gif';
+			$report ['animation'] = 'https://cdn.dribbble.com/users/174036/screenshots/1473571/22-travel-agency.gif';
+			$report ['completeStructureImage'] = 'hospitalComplete.png';
+			$report ['structureType'] = 'Hospital';
 			break;
 		case 'supermarket':
 			$structure = new Supermarket();
-			$order ['image'] = 'http://www.targetweb.ro/wp-content/uploads/2016/03/localseo.gif';
+			$report ['animation'] = 'http://www.targetweb.ro/wp-content/uploads/2016/03/localseo.gif';
+			$report ['completeStructureImage'] = 'supermarketComplete.png';
+			$report ['structureType'] = 'Supermarket';
 			break;
 	}
 
 	if(!empty($structure)){
-		$order['orderRoof'] 	= $structure->buildRoof(
+		$report['reportRoof'] 	= $structure->buildRoof(
 			$output['roofType'],
 			"metal tile"
 		);
-		$order['orderWalls'] 	= $structure->buildWalls(
+		$report['reportWalls'] 	= $structure->buildWalls(
 			"block","stone" , 
 			$output['wallsHeight'], 
 			rand(4, 20)
 		);
-		$order['orderWindows'] 	= $structure->buildWindows(
+		$report['reportWindows'] 	= $structure->buildWindows(
 			"two-doore", 
 			$output['windowsMaterial'], 
 			rand(5, 30)
 		);
-		$order['orderDoors'] 	= $structure->buildDoors(
+		$report['reportDoors'] 	= $structure->buildDoors(
 			"swing",
 			"wood", 
 			$output['doorsCount']
 		);
 	}
 
-	echo json_encode($order);
+	echo json_encode($report);
 }
 
 ?>

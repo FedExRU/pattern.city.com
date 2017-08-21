@@ -15,21 +15,38 @@ function validateForm(sampleForm, type){
 
 function validateStructureForm(sampleForm){
 	var controlValidators = 0;
+
 	sampleForm.find('input').each(function(){
+		$(this).nextAll("p").remove();
 		if($(this).val().length === 0) {
 			if( !($(this).next().hasClass('warning-text'))){
-				$(this).addClass('warning'); 
-				$(this).after(' <p class = "warning-text"> Required field is empty ! </p> ');
+				addWarnings($(this), 'Required field is empty!');
 				$('.structure.structure-active').addClass('padding-bottom-55');
 			}
-		} else{
+		}
+
+		if($(this).attr("type") == "number"){
+			var minValue = $(this).attr("min");
+			var currValue = $(this).val();
+			alert(currValue+" "+minValue+" "+(currValue < minValue));
+			if(currValue < minValue){
+				addWarnings($(this), 'Required field is less than '+minValue+'!');
+				$('.structure.structure-active').addClass('padding-bottom-55');
+			}
+		}
+
+		if(!$(this).hasClass("warning")){
 			controlValidators++;
 		 	$(this).addClass('acception');
+		 	$(this).nextAll("p").remove();
 		}
 	});
 
 	if(controlValidators !== sampleForm.find('input').length)
 		throw new Error("Some fields was not inserted!");
+}
 
-
+function addWarnings(selector, text){
+	selector.addClass('warning'); 
+	selector.after(' <p class = "warning-text"> '+text+' </p> ');
 }

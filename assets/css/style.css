@@ -303,12 +303,68 @@ input{
     width: 400px;
 }
 
-#construction-order{
+#construction-report{
 	display: none;
-	height: 370px;
-    width: 370px;
-    border-radius: 100%;
     margin: 0 auto;
+}
+
+#construction-report img#completed-structure{
+	position: absolute;
+    height: 150px;
+    object-fit: cover;
+    right: 20px;
+    top: 7px;
+    width: 200px;
+    z-index: -1;
+}
+
+#construction-report img#clip{
+    position: absolute;
+    right: 75px;
+    top: -45px;
+    width: 70px;
+    z-index: -1;
+}
+
+#construction-report #report-titleing{
+	margin: 0 auto;
+    padding: 0px 28%;
+    width: 50%;
+}
+
+#construction-report #report-titleing h2{
+	font-size: 17px;
+    height: 20px;
+    margin: 10px auto;
+    width: 62%;
+}
+
+#construction-report #report-titleing h2 span.report-title-key{
+	float: left;
+}
+
+#construction-report #report-titleing h2 span.report-title-value{
+    float: right;
+    text-align: left;
+    width: 100px;
+}
+
+
+#construction-report table{
+	margin: 0 auto;
+    width: 80%;
+}
+
+#construction-report table img{
+	height: 100px;
+	width: 100px;
+}
+
+#construction-report table h2{
+    display: inline-block;
+	font-size: 20px;
+    padding-left: 15px;
+    text-align: left;
 }
 
 #building-choose-actions{
