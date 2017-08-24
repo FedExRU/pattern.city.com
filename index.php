@@ -13,9 +13,6 @@
 	<link rel="stylesheet" 		href="assets/libs/css/remodal-default-theme.css">
 </head>
 <body>
-
-<div style = "background: url(https://media.giphy.com/media/9He7MYoAaKXe0/giphy.gif)"></div>
-
 	<div id="main">
 
 		<header>
@@ -36,7 +33,7 @@
 
 				<div data-remodal-target="modal" data-modal="government" class="pattern">
 					<img src="assets/img/patterns/government.png" alt="Meeting with government">
-					<h2>This's the government of this city. Let them introduce themselves to you!</h2>
+					<h2>This is the government of this city. Let them introduce themselves to you!</h2>
 					<div class="go pink">
 						<h3>Yeah, with pleasure!</h3>
 					</div>
@@ -48,10 +45,10 @@
 					<img src="assets/img/patterns/build.png" alt="Building">
 					<h2>Maybe we'll improve the city? Let's build something!</h2>
 					<div class="go skyblue">
-						<h3>This's good idea!</h3>
+						<h3>This is good idea!</h3>
 					</div>
 				</div>
-				<div class="pattern">
+				<div data-remodal-target="modal" data-modal="emergency" class="pattern">
 					<img src="assets/img/patterns/emergency.png" alt="Calling to emergency">
 					<h2>You are in danger?! Call to 911 immediately!</h2>
 					<div class="go red">
@@ -62,14 +59,14 @@
 
 			<section class="wrapper">
 				<div class="pattern">
-					<img src="assets/img/patterns/sience.png" alt="Discovering new technology">
+					<img src="assets/img/patterns/sience.png" alt="Discovering a new technology">
 					<h2>Live and learn! Let's discover new technology!</h2>
 					<div class="go black">
 						<h3>Sounds tempting! I'm in!</h3>
 					</div>
 				</div>
 
-				<div class="pattern">
+				<div data-remodal-target="modal" data-modal="celebration" class="pattern">
 					<img src="assets/img/patterns/event.png" alt="Making a celebration">
 					<h2>Let's have a grand celebration today!</h2>
 					<div class="go yellow">
@@ -96,7 +93,6 @@
 		</div>
 
 		<footer>	</footer>
-
 	</div>
 </body>
 <script src="assets/libs/js/jquery-3.2.1.min.js"></script>

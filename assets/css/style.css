@@ -202,17 +202,24 @@ input{
 }
 
 /*[--------------
- * 4 Mayor meeting / Government meeting / Building
+ * 4 Single block for all pattern's modal window's content
  *--------------]
  */
 
-#mayor-meeting #conversation, #government-meeting #conversation, #building #conversation{
+.single-block #conversation{
  	float: right;
     max-width: 430px;
     width: 100%;
 }
 
- #mayor-meeting img, #government-meeting img, #building img{
+.single-block #conversation.bottom{
+    float: none;
+    max-width: none;
+    width: 100%;
+}
+
+
+.single-block img{
 	float: left;
 	height: 200px;
 	margin-top: 17px;
@@ -220,35 +227,15 @@ input{
 }
 
  /*[--------------
- * 4.1 Mayor meeting
+ * 4.1 Double conversation with anyone
  *--------------]
  */
 
-#mayor-meeting{
- 	width: 100%;
-    height: 200px;
-}
-
-#mayor-meeting #conversation p{
- 	display: inline-block;
-    float: left;
-    font-size: 22px;
-    padding-left: 20px;
-    text-align: left;
-    margin: 18% 0px;
-}
-
-
-/*[--------------
- * 5. Government meeting
- *--------------]
- */
-
-#government-meeting #conversation{
+.double-conversation#conversation{
 	margin-top: 35px;
 }
 
-#government-meeting #conversation p{
+.double-conversation#conversation p{
  	display: inline-block;
     float: left;
     font-size: 20px;
@@ -258,28 +245,63 @@ input{
     padding-left: 20px;
 }
 
-#government-meeting #conversation p strong{
+.double-conversation#conversation p strong{
  	float: left;
  	margin-right: 5px;
+    min-width: 86px;
 }
 
-#government-meeting #conversation p span{
+.double-conversation#conversation p span{
  	float: right;
+    max-width: 287px;
 }
 
-#government-meeting #conversation p span a{
+.double-conversation#conversation p span a{
 	color: #000;
  	text-decoration: none;
 }
 
-#government-meeting #conversation p span a:hover{
+.double-conversation#conversation p span a:hover{
 	color: #66bb6a;
  	text-decoration: none;
 }
 
-#government-meeting #conversation p span a:last-child:hover{
+.double-conversation#conversation p span a:last-child:hover{
 	color: #ef5350;
 }
+
+ /*[--------------
+ * 5 Mayor meeting
+ *--------------]
+ */
+
+#mayor-meeting{
+    width: 100%;
+    height: 200px;
+}
+
+#mayor-meeting #conversation p{
+    display: inline-block;
+    float: left;
+    font-size: 22px;
+    padding-left: 20px;
+    text-align: left;
+    margin: 18% 0px;
+}
+
+ /*[--------------
+ * 5.1 Government meeting
+ *--------------]
+ */
+
+#government-meeting #conversation{
+	font-size: 21px;
+}
+
+#government-meeting #conversation p{
+	text-align: left;
+}
+
 
 /*[--------------
  * 6. Building
@@ -349,7 +371,6 @@ input{
     width: 100px;
 }
 
-
 #construction-report table{
 	margin: 0 auto;
     width: 80%;
@@ -373,7 +394,7 @@ input{
 
 #building #conversation p{
  	font-size: 19px;
-    margin: 9% 0px;
+    margin: 12% 0px;
     padding-left: 20px;
     text-align: left;
 }
@@ -384,7 +405,6 @@ input{
 	display: block;
 	height: 200px;
 	padding-bottom: 10px;
-
 }
 
 #building .structure:last-child{
@@ -420,6 +440,47 @@ input{
 	cursor: pointer;
 	padding-right: 10px;
 }
+
+/*[--------------
+ * 7. Emergency
+ *--------------]
+ */
+
+#emergency #emergencyImage{
+    float: none;
+}
+
+/*[--------------
+ * 7. Mass Media
+ *--------------]
+ */
+
+#mass-media #conversation p span a #partyName{
+	border: none;
+    font-size: 17px;
+    width: 38%;
+}
+
+#mass-media #conversation p span a:hover #partyName{
+	color:#66bb6a;
+}
+
+#mass-media #conversation p span a:hover #partyName::-webkit-input-placeholder{
+	color:#66bb6a;
+}
+
+#mass-media #conversation p span a:hover #partyName::-moz-placeholder{
+	color:#66bb6a;
+} 
+
+#mass-media #conversation p span a:hover #partyName:-moz-placeholder{
+	color:#66bb6a;
+}
+
+#mass-media #conversation p span a:hover #partyName:-ms-input-placeholder{
+	color:#66bb6a;
+}
+
 
 
 

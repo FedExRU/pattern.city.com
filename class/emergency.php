@@ -12,19 +12,28 @@ interface ResqueStrategy{
 
 class PoliceDepartment implements ResqueStrategy{
 	public function callHelp($cause){
-		echo "Police are on their way for ".$cause;
+		$data ['message'] = "Police are on their way for a ".$cause."!";
+		$data ['image'] = "assets/img/emergency/police.png";
+
+		return $data;
 	}
 } 
 
 class FireDepartment implements ResqueStrategy{
 	public function callHelp($cause){
-		echo "Firefighters are on their way for ".$cause;
+		$data ['message'] = "Firefighters are on their way for a ".$cause."!";
+		$data ['image'] = "assets/img/emergency/firefighters.png";
+
+		return $data;
 	}
 } 
 
 class Abmulance implements ResqueStrategy{
 	public function callHelp($cause){
-		echo "Abmulance are on their way for ".$cause;
+		$data ['message'] = "Abmulance are on their way for an ".$cause."!";
+		$data ['image'] = "assets/img/emergency/ambulance.png";
+
+		return $data;
 	}
 }
 
@@ -54,7 +63,7 @@ class Emegrency{
 				echo "Emegrency found no danger. Please, call to us when you see the danger. Our number is 911";
 				die();
 		}
-		$resqueSquat->callHelp($this->danger);
+		return $resqueSquat->callHelp($this->danger);
 	}
 }
 

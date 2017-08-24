@@ -28,7 +28,6 @@ function validateStructureForm(sampleForm){
 		if($(this).attr("type") == "number"){
 			var minValue = $(this).attr("min");
 			var currValue = $(this).val();
-			alert(currValue+" "+minValue+" "+(currValue < minValue));
 			if(currValue < minValue){
 				addWarnings($(this), 'Required field is less than '+minValue+'!');
 				$('.structure.structure-active').addClass('padding-bottom-55');

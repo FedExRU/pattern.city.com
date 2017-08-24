@@ -92,4 +92,14 @@ if($_POST['action'] == "building"){
 	echo json_encode($report);
 }
 
+if($_POST['action'] == 'emergency'){
+
+	include("../class/emergency.php");
+
+	$emergency = new Emegrency($_POST['cause']);
+
+	echo json_encode($emergency->call());
+
+}
+
 ?>

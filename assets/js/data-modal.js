@@ -14,7 +14,12 @@ $(document).ready(function(){
 			case 'building':
 				loadBuildingHtml();
 				break;
-
+			case 'emergency':
+				loadEmergencyOperatorHtml();
+				break;
+			case 'celebration':
+				loadCelebrationAnimatorHtml();
+			break;
 		}
 	})
 })
@@ -33,6 +38,9 @@ function callBuilding(){
 		success: function(data){
 			var orderBuildingData = $.parseJSON(data);
 			loadBuildingAnimation(orderBuildingData);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
 		}
 	});
 }
@@ -50,6 +58,9 @@ function callChiefDoctor(){
 		data: {action: 'government', personalData},
 		success: function(data){
 			loadGovernmentHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
 		}
 	});
 }
@@ -67,6 +78,23 @@ function callCityJudge(){
 		data: {action: 'government', personalData},
 		success: function(data){
 			loadGovernmentHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
+		}
+	});
+}
+
+function callEmergency(cause){
+	$.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: "emergency", cause},
+		success: function(data){
+			loadEmergencyHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");	
 		}
 	});
 }
@@ -78,6 +106,9 @@ function callMayor(){
 		data: {action: 'mayor'},
 		success: function(data){
 			loadMayorHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
 		}
 	})
 }
@@ -95,6 +126,9 @@ function callPoliceCaptain(){
 		data: {action: 'government', personalData},
 		success: function(data){
 			loadGovernmentHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
 		}
 	});
 }
@@ -122,6 +156,21 @@ function loadBuildingSettingsHtml(){
 	});
 }
 
+function loadEmergencyHtml(data){
+	var emergencyData 	 = $.parseJSON(data);
+	var emergencyImage 	 = emergencyData.image;
+	var emergencyMessage = emergencyData.message;
+
+	$(".data-content").load('layouts/emergency/emergency.html', function(){
+		$(this).find("#emergencyImage").attr("src", emergencyImage);
+		$(this).find("#conversation p").text(emergencyMessage);
+	});
+}
+
+function loadEmergencyOperatorHtml(){
+	$(".data-content").load('layouts/emergency/emergencyOperator.html');
+}
+
 function loadGovernmentHtml(sampleData){
 	var governmentData 	= $.parseJSON(sampleData);
 	var governmentName 	= governmentData.governmentName;
@@ -129,9 +178,9 @@ function loadGovernmentHtml(sampleData){
 	var governmentText 	= governmentData.governmentGreetings;
 	$(".data-content").load('layouts/government/government.html', function(){
 		var dialogWindow = $(this).find("#government-meeting #conversation p");
-		var dialogImage = $(this).find("#government-meeting img");
+		var dialogImage  = $(this).find("#government-meeting img");
 		dialogImage.attr("src", "assets/img/government/"+governmentImage);
-		dialogWindow.html("<strong>"+governmentName+":</strong> "+governmentText);
+		dialogWindow.html("<strong>"+governmentName+":</strong><span>"+governmentText+"</span>");
 	});
 }
 
@@ -151,6 +200,10 @@ function loadMayorHtml(sampleData){
 
 function loadMayorSecretatyHtml(){
 	$(".data-content").load('layouts/mayor/secretary.html');
+}
+
+function loadCelebrationAnimatorHtml(){
+	$(".data-content").load('layouts/massMedia/animator.html');
 }
 
 
