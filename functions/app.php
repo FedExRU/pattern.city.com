@@ -107,12 +107,16 @@ if($_POST['action'] == 'massMedia'){
 	$data = [
 		'tv' => [
 			'text' 	=> $pc24->getNotifyText(),
-			'image' => $pc24->getImage()
+			'image' => $pc24->getImage(),
+			'time' => date("g:i a", time()-3*60)
 		],
 		'site' => [
 			'text' 	=> $pcb->getNotifyText(),
-			'image' => $pcb->getImage()
-		]
+			'image' => $pcb->getImage(),
+			'time' =>  date("g:i a")
+		],
+		'date' => date("l, F, j, Y"),
+		'name' => $_POST['partyName']
 	];
 
 	echo json_encode($data);

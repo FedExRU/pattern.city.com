@@ -206,6 +206,10 @@ input{
  *--------------]
  */
 
+.single-block{
+    min-height: 218px;
+}
+
 .single-block #conversation, .single-block .list{
  	float: right;
     max-width: 424px;
@@ -516,6 +520,15 @@ input{
 
 #mass-media .list p{
     padding-left: 20px;
+}
+
+#massMedia-actions{
+    margin-top: 40%;
+}
+
+.time{
+    font-size: 12px;
+    color: #bbb;
 }
 
 

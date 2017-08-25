@@ -63,28 +63,31 @@ function callGovernment(position){
 	var personalData = {};
 
 	switch(position){
-		case 'chiefDoctor':
+		case 'Minister Of Health':
 			personalData = {
-				'position' : 'Chief Doctor',
-				'firstName' : 'Gilbert',
+				'position' : 'Minister of Health',
+				'firstName': 'Gilbert',
 				'lastName' : 'Myers',
-				'hireDate' : '12.02.2003'
+				'hireDate' : '12.02.2003',
+				'image'    : 'ministerOfHealth.png'
 			};
 			break;
-		case 'cityJudge':
+		case 'Chairman Of The City Parliament':
 			personalData = {
-				'position' : 'City Judge',
-				'firstName' : 'Margaret',
+				'position' : 'Chairman of the City Parliament',
+				'firstName': 'Margaret',
 				'lastName' : 'Thompson',
-				'hireDate' : '01.07.2008'
+				'hireDate' : '01.07.2008',
+				'image'    : 'chairmanOfTheCityParliament.png'
 			};
 			break;
-		case 'policeCaptain':
+		case 'Minister Of Defense':
 			personalData = {
-				'position' : 'Police Captain',
-				'firstName' : 'Patrick',
+				'position' : 'Minister of Defense',
+				'firstName': 'Patrick',
 				'lastName' : 'Cooper',
-				'hireDate' : '03.10.2006'
+				'hireDate' : '03.10.2006',
+				'image'    : 'ministerOfDefense.png'
 			};
 			break;
 	}
@@ -205,6 +208,10 @@ function loadMassMediaHtml(sampleData){
 	var siteData = massMediaData.site;
 
 	$(".data-content").load('layouts/massMedia/massMedia.html', function(){
+		$(this).find("#date").text(massMediaData.date);
+		$(this).find("#party-name").text("#"+massMediaData.name);
+		$(this).find("#pc-24-time").text("Posted at " + tvData.time);
+		$(this).find("#pcb-time").text("Posted at "+siteData.time);
 		$(this).find("#pc-24-image").attr("src", "assets/img/massMedia/" + tvData.image);
 		$(this).find("#pc-24 span").text(tvData.text);
 		$(this).find("#pcb-image").attr("src", "assets/img/massMedia/" + siteData.image);

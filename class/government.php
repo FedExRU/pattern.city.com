@@ -27,20 +27,8 @@ class Government
 		self::setFirstName($sampleData['position'], $sampleData['firstName']);
 		self::setLastName($sampleData['position'], $sampleData['lastName']);
 		self::setHireDate($sampleData['position'], $sampleData['hireDate']);
+		self::setImage($sampleData['position'], $sampleData['image']);
 
-		switch ($sampleData['position']) {
-			case 'Chief Doctor':
-				self::setImage($sampleData['position'],"chiefDoctor.png");
-				break;
-
-			case 'Police Captain':
-				self::setImage($sampleData['position'],"policeCaptain.png");
-				break;
-
-			case 'City Judge':
-				self::setImage($sampleData['position'],"judge.png");
-				break;
-		}
 	}
 
 	public static function setFirstName($position, $newFirstName){
