@@ -26,9 +26,9 @@ function validateStructureForm(sampleForm){
 		}
 
 		if($(this).attr("type") == "number"){
-			var minValue = $(this).attr("min");
-			var currValue = $(this).val();
-			if(currValue < minValue){
+			var minValue  = parseInt($(this).attr("min"));
+			var currValue = parseInt($(this).val());
+			if(minValue > currValue){
 				addWarnings($(this), 'Required field is less than '+minValue+'!');
 				$('.structure.structure-active').addClass('padding-bottom-55');
 			}
@@ -48,4 +48,13 @@ function validateStructureForm(sampleForm){
 function addWarnings(selector, text){
 	selector.addClass('warning'); 
 	selector.after(' <p class = "warning-text"> '+text+' </p> ');
+}
+
+function validateField(sampleField){
+
+	if(sampleField.val() == ''){
+		sampleField.css("border", "1px solid #e57373");
+		throw new Error("The field was not inserted!");
+	}
+
 }

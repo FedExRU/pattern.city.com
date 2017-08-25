@@ -55,13 +55,18 @@ class Event{
 abstract class Media implements EventSubscriber{
 
 	protected $nonifyText;
+    protected $image;
 
     public function __construct(){
         Event::getInstance()->registerMassMedia($this);
     }
 
-    protected function getNotifyText(){
-    	echo $this->nonifyText;
+    public function getNotifyText(){
+    	return $this->nonifyText;
+    }
+
+    public function getImage(){
+        return $this->image;
     }
 
     abstract public function notify($obj);
@@ -69,27 +74,30 @@ abstract class Media implements EventSubscriber{
 
 class TelevisionMassMedia extends Media{
 
+    function __construct(){
+        parent::__construct();
+        $this->image = "tv.png";
+    }
+
 	public function notify($obj){
         if($obj instanceof Event){
             $this->nonifyText = "Hello! You are watching the PC 24 channel and today in our city there will be a large-scale event called the ".Event::getInstance()->getEvent().". Report the event today at 6 pm.";
-            $this->getNotifyText();
         }
     }
 }
 
 class InternetMassMedia extends Media{
 
+    function __construct(){
+        parent::__construct();
+        $this->image = "site.png";
+    }
+
 	public function notify($obj){
         if($obj instanceof Event){
             $this->nonifyText = "To all subscribers of the PatternCityBlog.com site, greetings! Today there is an interesting event called ".Event::getInstance()->getEvent().". Judging by the stories of our visitors, the event will be very interesting and exciting!";
-            $this->getNotifyText();
         }
     }
 }
-
-$pc24 	= new TelevisionMassMedia();
-$pcb 	= new InternetMassMedia();
-
-Event::getInstance()->setEvent("Octoberfest");
 
 ?>

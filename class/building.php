@@ -22,6 +22,52 @@ interface Doors{
 	public function buildDoors($type, $material, $count);
 }
 
+interface Information{
+	public function getAnimation();
+	public function getImage();
+	public function getType();
+}
+
+/*
+ * Implementing Information interface
+ */
+
+ class HospitalInformation implements Information{
+ 	public function getAnimation(){
+ 		return "https://cdn.dribbble.com/users/174036/screenshots/1473571/22-travel-agency.gif";
+ 	}
+ 	public function getImage(){
+ 		return "hospitalComplete.png";
+ 	}
+ 	public function getType(){
+ 		return "Hospital";
+ 	}
+ }
+
+ class SupermarketInformation implements Information{
+ 	public function getAnimation(){
+ 		return "http://www.targetweb.ro/wp-content/uploads/2016/03/localseo.gif";
+ 	}
+ 	public function getImage(){
+ 		return "supermarketComplete.png";
+ 	}
+ 	public function getType(){
+ 		return "Supermarket";
+ 	}
+ }
+
+ class HouseInformation implements Information{
+ 	public function getAnimation(){
+ 		return "https://media.giphy.com/media/9He7MYoAaKXe0/giphy.gif";
+ 	}
+ 	public function getImage(){
+ 		return "houseComplete.png";
+ 	}
+ 	public function getType(){
+ 		return "House";
+ 	}
+ }
+
 /*
  * Implementing Roof interface
  */
@@ -30,14 +76,12 @@ class HospitalRoof implements Roof{
 	public function buildRoof($type, $material){
 		return "Construction of ".$type." ".$material." roof for a hospital complete!";
 	}
-
 }
 
 class SupermarketRoof implements Roof{
 	public function buildRoof($type, $material){
 		return "Construction of ".$type." ".$material." roof for a supermarket complete!";
 	}
-
 }
 
 class HouseRoof implements Roof{
@@ -45,7 +89,6 @@ class HouseRoof implements Roof{
 		return "Construction of ".$type." ".$material." roof for a house complete!";
 	}
 }
-
 
 /*
  * Implementing Walls interface
@@ -106,7 +149,6 @@ class SupermarketDoors implements Doors{
 	public function buildDoors($type, $material, $count){
 		return "Construction of ".$count."-th ".$type." ".$material." doors for a supermarket complete!";
 	}
-
 }
 
 class HouseDoors implements Doors{
@@ -124,6 +166,9 @@ interface Structure{
 	public function buildWalls($type, $material, $heigth, $count);
 	public function buildWindows($type, $material, $count);
 	public function buildDoors($type, $material, $count);
+	public function getStructureAnimation();
+	public function getStructureImage();
+	public function getStructureType();
 }
 
 /*
@@ -136,12 +181,14 @@ class Hospital implements Structure
 	protected $walls;
 	protected $windows;
 	protected $doors;
+	protected $info;
 
 	function __construct(){
-		$this->roof 	= new HospitalRoof();
-		$this->walls 	= new HospitalWalls();
-		$this->windows 	= new HospitalWindows();
-		$this->doors 	= new HospitalDoors();
+		$this->roof 	 = new HospitalRoof();
+		$this->walls 	 = new HospitalWalls();
+		$this->windows 	 = new HospitalWindows();
+		$this->doors 	 = new HospitalDoors();
+		$this->info 	 = new HospitalInformation();
 	}
 
 	public function buildRoof($type, $material){
@@ -158,6 +205,18 @@ class Hospital implements Structure
 
 	public function buildDoors($type, $material, $count){
 		return $this->doors->buildDoors($type, $material, $count);
+	}
+
+	public function getStructureAnimation(){
+		return $this->info->getAnimation();
+	}
+	
+	public function getStructureImage(){
+		return $this->info->getImage();
+	}
+
+	public function getStructureType(){
+		return $this->info->getType();
 	}
 }
 
@@ -171,12 +230,14 @@ class Supermarket implements Structure
 	protected $walls;
 	protected $windows;
 	protected $doors;
+	protected $info;
 
 	function __construct(){
-		$this->roof 	= new SupermarketRoof();
-		$this->walls 	= new SupermarketWalls();
-		$this->windows 	= new SupermarketWindows();
-		$this->doors 	= new SupermarketDoors();
+		$this->roof 	 = new SupermarketRoof();
+		$this->walls 	 = new SupermarketWalls();
+		$this->windows 	 = new SupermarketWindows();
+		$this->doors 	 = new SupermarketDoors();
+		$this->info 	 = new SupermarketInformation();
 	}
 
 	public function buildRoof($type, $material){
@@ -193,6 +254,18 @@ class Supermarket implements Structure
 	
 	public function buildDoors($type, $material, $count){
 		return $this->doors->buildDoors($type, $material, $count);
+	}
+
+	public function getStructureAnimation(){
+		return $this->info->getAnimation();
+	}
+	
+	public function getStructureImage(){
+		return $this->info->getImage();
+	}
+
+	public function getStructureType(){
+		return $this->info->getType();
 	}
 }
 
@@ -206,12 +279,14 @@ class House implements Structure
 	protected $walls;
 	protected $windows;
 	protected $doors;
+	protected $info;
 
 	function __construct(){
-		$this->roof 	= new HouseRoof();
-		$this->walls 	= new HouseWalls();
-		$this->windows 	= new HouseWindows();
-		$this->doors 	= new HouseDoors();
+		$this->roof 	 = new HouseRoof();
+		$this->walls 	 = new HouseWalls();
+		$this->windows 	 = new HouseWindows();
+		$this->doors 	 = new HouseDoors();
+		$this->info 	= new HouseInformation();
 	}
 
 	public function buildRoof($type, $material){
@@ -228,6 +303,18 @@ class House implements Structure
 	
 	public function buildDoors($type, $material, $count){
 		return $this->doors->buildDoors($type, $material, $count);
+	}
+
+	public function getStructureAnimation(){
+		return $this->info->getAnimation();
+	}
+	
+	public function getStructureImage(){
+		return $this->info->getImage();
+	}
+
+	public function getStructureType(){
+		return $this->info->getType();
 	}
 }
 

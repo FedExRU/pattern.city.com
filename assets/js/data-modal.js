@@ -36,48 +36,7 @@ function callBuilding(){
 		url: "functions/app.php",
 		data: {action: "building",  structureData},
 		success: function(data){
-			var orderBuildingData = $.parseJSON(data);
-			loadBuildingAnimation(orderBuildingData);
-		},
-		error: function(){
-			alert("Something went wrong! Try again later");
-		}
-	});
-}
-
-function callChiefDoctor(){
-	var personalData = {
-		'position' : 'Chief Doctor',
-		'firstName' : 'Gilbert',
-		'lastName' : 'Myers',
-		'hireDate' : '12.02.2003'
-	};
-	$.ajax({
-		type: "POST",
-		url: "functions/app.php",
-		data: {action: 'government', personalData},
-		success: function(data){
-			loadGovernmentHtml(data);
-		},
-		error: function(){
-			alert("Something went wrong! Try again later");
-		}
-	});
-}
-
-function callCityJudge(){
-	var personalData = {
-		'position' : 'City Judge',
-		'firstName' : 'Margaret',
-		'lastName' : 'Thompson',
-		'hireDate' : '01.07.2008'
-	};
-	$.ajax({
-		type: "POST",
-		url: "functions/app.php",
-		data: {action: 'government', personalData},
-		success: function(data){
-			loadGovernmentHtml(data);
+			loadBuildingAnimation(data);
 		},
 		error: function(){
 			alert("Something went wrong! Try again later");
@@ -99,6 +58,71 @@ function callEmergency(cause){
 	});
 }
 
+function callGovernment(position){
+
+	var personalData = {};
+
+	switch(position){
+		case 'chiefDoctor':
+			personalData = {
+				'position' : 'Chief Doctor',
+				'firstName' : 'Gilbert',
+				'lastName' : 'Myers',
+				'hireDate' : '12.02.2003'
+			};
+			break;
+		case 'cityJudge':
+			personalData = {
+				'position' : 'City Judge',
+				'firstName' : 'Margaret',
+				'lastName' : 'Thompson',
+				'hireDate' : '01.07.2008'
+			};
+			break;
+		case 'policeCaptain':
+			personalData = {
+				'position' : 'Police Captain',
+				'firstName' : 'Patrick',
+				'lastName' : 'Cooper',
+				'hireDate' : '03.10.2006'
+			};
+			break;
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: 'government', personalData},
+		success: function(data){
+			loadGovernmentHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
+		}
+	});
+}
+
+function callMassMedia(){
+
+	var partyField= $("#partyName");
+
+	validateField(partyField);
+
+	var partyName = partyField.val();
+
+	$.ajax({
+		type: "POST",
+		url: "functions/app.php",
+		data: {action: "massMedia", partyName},
+		success: function(data){
+			loadMassMediaHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
+		}
+	});
+}
+
 function callMayor(){
 	$.ajax({
 		type: "POST",
@@ -113,36 +137,17 @@ function callMayor(){
 	})
 }
 
-function callPoliceCaptain(){
-	var personalData = {
-		'position' : 'Police Captain',
-		'firstName' : 'Patrick',
-		'lastName' : 'Cooper',
-		'hireDate' : '03.10.2006'
-	};
-	$.ajax({
-		type: "POST",
-		url: "functions/app.php",
-		data: {action: 'government', personalData},
-		success: function(data){
-			loadGovernmentHtml(data);
-		},
-		error: function(){
-			alert("Something went wrong! Try again later");
-		}
-	});
-}
-
 function loadBuildingAnimation(sampleData){
+	var orderBuildingData = $.parseJSON(sampleData);
 	$(".data-content").load('layouts/building/buildingAnimation.html', function(){
-		$(this).find("#animation-content").css("background", "url("+sampleData.animation+")");
-		$(this).find("#construction-report #completed-structure").attr("src", "assets/img/building/"+sampleData.completeStructureImage);
-		$(this).find("#construction-report h2#roof-report-text").text(sampleData.reportRoof);
-		$(this).find("#construction-report h2#walls-report-text").text(sampleData.reportWalls);
-		$(this).find("#construction-report h2#windows-report-text").text(sampleData.reportWindows);
-		$(this).find("#construction-report h2#doors-report-text").text(sampleData.reportDoors);
-		$(this).find("#construction-report #report-titleing h2 span#structure-name").text(sampleData.structureType);
-		$(this).find("#construction-report #report-titleing h2 span#structure-date").text(sampleData.date);
+		$(this).find("#animation-content").css("background", "url("+orderBuildingData.animation+")");
+		$(this).find("#construction-report #completed-structure").attr("src", "assets/img/building/"+orderBuildingData.completeStructureImage);
+		$(this).find("#construction-report h2#roof-report-text").text(orderBuildingData.reportRoof);
+		$(this).find("#construction-report h2#walls-report-text").text(orderBuildingData.reportWalls);
+		$(this).find("#construction-report h2#windows-report-text").text(orderBuildingData.reportWindows);
+		$(this).find("#construction-report h2#doors-report-text").text(orderBuildingData.reportDoors);
+		$(this).find("#construction-report #report-titleing h2 span#structure-name").text(orderBuildingData.structureType);
+		$(this).find("#construction-report #report-titleing h2 span#structure-date").text(orderBuildingData.date);
 	});
 }
 
@@ -156,8 +161,14 @@ function loadBuildingSettingsHtml(){
 	});
 }
 
-function loadEmergencyHtml(data){
-	var emergencyData 	 = $.parseJSON(data);
+function loadCelebrationAnimatorHtml(){
+	$(".data-content").load('layouts/massMedia/animator.html', function(){
+		checkPartyName();
+	});
+}
+
+function loadEmergencyHtml(sampleData){
+	var emergencyData 	 = $.parseJSON(sampleData);
 	var emergencyImage 	 = emergencyData.image;
 	var emergencyMessage = emergencyData.message;
 
@@ -188,6 +199,19 @@ function loadGovernmentSecretatyHtml(){
 	$(".data-content").load('layouts/government/secretary.html');
 }
 
+function loadMassMediaHtml(sampleData){
+	var massMediaData = $.parseJSON(sampleData);
+	var tvData = massMediaData.tv;
+	var siteData = massMediaData.site;
+
+	$(".data-content").load('layouts/massMedia/massMedia.html', function(){
+		$(this).find("#pc-24-image").attr("src", "assets/img/massMedia/" + tvData.image);
+		$(this).find("#pc-24 span").text(tvData.text);
+		$(this).find("#pcb-image").attr("src", "assets/img/massMedia/" + siteData.image);
+		$(this).find("#pcb span").text(siteData.text);
+	});
+}
+
 function loadMayorHtml(sampleData){
 	var mayorData = $.parseJSON(sampleData);
 	var mayorName = mayorData.mayorName;
@@ -201,11 +225,6 @@ function loadMayorHtml(sampleData){
 function loadMayorSecretatyHtml(){
 	$(".data-content").load('layouts/mayor/secretary.html');
 }
-
-function loadCelebrationAnimatorHtml(){
-	$(".data-content").load('layouts/massMedia/animator.html');
-}
-
 
 
 

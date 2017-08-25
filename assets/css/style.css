@@ -206,9 +206,9 @@ input{
  *--------------]
  */
 
-.single-block #conversation{
+.single-block #conversation, .single-block .list{
  	float: right;
-    max-width: 430px;
+    max-width: 424px;
     width: 100%;
 }
 
@@ -224,6 +224,24 @@ input{
 	height: 200px;
 	margin-top: 17px;
 	width: 200px;
+}
+
+.data-content #tags span{
+    color: #2a5885;
+}
+
+.data-content #tags span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.data-content #tags span:first-child{
+    color: #000;
+}
+
+.data-content #tags span:first-child:hover{
+    cursor: default;
+    text-decoration: none;
 }
 
  /*[--------------
@@ -451,11 +469,12 @@ input{
 }
 
 /*[--------------
- * 7. Mass Media
+ * 8. Mass Media
  *--------------]
  */
 
 #mass-media #conversation p span a #partyName{
+    cursor: pointer;
 	border: none;
     font-size: 17px;
     width: 38%;
@@ -463,6 +482,10 @@ input{
 
 #mass-media #conversation p span a:hover #partyName{
 	color:#66bb6a;
+}
+
+#mass-media #conversation p span a #partyName:focus{
+    outline: none;
 }
 
 #mass-media #conversation p span a:hover #partyName::-webkit-input-placeholder{
@@ -481,6 +504,19 @@ input{
 	color:#66bb6a;
 }
 
+#mass-media img{
+    clear: both;
+}
+
+#mass-media .list{
+    font-size: 19px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+#mass-media .list p{
+    padding-left: 20px;
+}
 
 
 
