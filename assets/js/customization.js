@@ -76,3 +76,26 @@ function checkStructure(){
 }
 
 
+/*[--------------------------------------------------------------------------------------
+ * 3. Searching
+ *---------------------------------------------------------------------------------------]
+ */
+
+ function checkSearching(){
+
+ 	$(document).ready(function(){
+ 		$('.direction').click(function(){
+ 			if($(this).hasClass('direction-active')){
+ 				$(this).removeClass('direction-active');
+ 				$("#research-choose-actions .remodal-confirm").addClass("disabled");
+ 			}else{
+ 				$('.direction').each(function(){
+ 					$(this).removeClass('direction-active');
+ 				});
+ 				$(this).addClass('direction-active');
+ 				$("#research-choose-actions .remodal-confirm").removeClass("disabled");
+ 			}
+ 		});
+ 	});
+
+ }

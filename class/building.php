@@ -34,7 +34,7 @@ interface Information{
 
  class HospitalInformation implements Information{
  	public function getAnimation(){
- 		return "https://cdn.dribbble.com/users/174036/screenshots/1473571/22-travel-agency.gif";
+ 		return "hospital.gif";
  	}
  	public function getImage(){
  		return "hospitalComplete.png";
@@ -46,7 +46,7 @@ interface Information{
 
  class SupermarketInformation implements Information{
  	public function getAnimation(){
- 		return "http://www.targetweb.ro/wp-content/uploads/2016/03/localseo.gif";
+ 		return "supermarket.gif";
  	}
  	public function getImage(){
  		return "supermarketComplete.png";
@@ -58,7 +58,7 @@ interface Information{
 
  class HouseInformation implements Information{
  	public function getAnimation(){
- 		return "https://media.giphy.com/media/9He7MYoAaKXe0/giphy.gif";
+ 		return "house.gif";
  	}
  	public function getImage(){
  		return "houseComplete.png";

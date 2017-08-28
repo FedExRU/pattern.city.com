@@ -1,3 +1,32 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *
+ * Included files:
+ * -----------------------------------------------------------
+ *
+ * 1] validation.js 	- this file validates forms and custom 
+ * fields
+ *
+ * 2] customization.js 	- this file customizes fields and 
+ * buttons during validation
+ *
+ * ---------------------------------------------------------
+ *
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var app = "functions/app.php";
+
+ /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *
+ * 0] Switch cases for loading nessesarry basic layout from
+ * index.html. Target variable - data-modal in div.pattern tag
+ *
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
 $(document).ready(function(){
 
 	$(".pattern").click(function(){
@@ -17,12 +46,41 @@ $(document).ready(function(){
 			case 'emergency':
 				loadEmergencyOperatorHtml();
 				break;
+			case 'science':
+				loadMainScientistHtml();
+				break;
 			case 'celebration':
 				loadCelebrationAnimatorHtml();
-			break;
+				break;
+			case 'embassy':
+				loadEmbassySecretaryHtml();
+				break;
 		}
 	})
 })
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *
+ * 1] AJAX-queries to Server (app.php). Prefix of functions 
+ * - call
+ *
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+function callAmbassador(countryAmbassador){
+	$.ajax({
+		type: "POST",
+		url: app,
+		data: {action: "embassy", countryAmbassador},
+		success: function(data){
+			loadAmbassadorHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
+		}
+	});
+}
 
 function callBuilding(){
 	var structureForm = $('.structure.structure-active form');
@@ -33,7 +91,7 @@ function callBuilding(){
 
 	 $.ajax({
 		type: "POST",
-		url: "functions/app.php",
+		url: app,
 		data: {action: "building",  structureData},
 		success: function(data){
 			loadBuildingAnimation(data);
@@ -47,7 +105,7 @@ function callBuilding(){
 function callEmergency(cause){
 	$.ajax({
 		type: "POST",
-		url: "functions/app.php",
+		url: app,
 		data: {action: "emergency", cause},
 		success: function(data){
 			loadEmergencyHtml(data);
@@ -94,7 +152,7 @@ function callGovernment(position){
 
 	$.ajax({
 		type: "POST",
-		url: "functions/app.php",
+		url: app,
 		data: {action: 'government', personalData},
 		success: function(data){
 			loadGovernmentHtml(data);
@@ -103,6 +161,12 @@ function callGovernment(position){
 			alert("Something went wrong! Try again later");
 		}
 	});
+}
+
+function callLaboratory(){
+	var activeDirection = $("#sciense-directions .direction.direction-active");
+
+	activeDirection.css("background", "red");
 }
 
 function callMassMedia(){
@@ -115,7 +179,7 @@ function callMassMedia(){
 
 	$.ajax({
 		type: "POST",
-		url: "functions/app.php",
+		url: app,
 		data: {action: "massMedia", partyName},
 		success: function(data){
 			loadMassMediaHtml(data);
@@ -129,7 +193,7 @@ function callMassMedia(){
 function callMayor(){
 	$.ajax({
 		type: "POST",
-		url: "functions/app.php",
+		url: app,
 		data: {action: 'mayor'},
 		success: function(data){
 			loadMayorHtml(data);
@@ -140,17 +204,49 @@ function callMayor(){
 	})
 }
 
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *
+ * 2] Functions for layouts loading with AJAX-queries-results 
+ * data. Prefix of functions - load . Postfix of functions -
+ * Html
+ *
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+function loadAmbassadorHtml(sampleData){
+	var ambassadorData = $.parseJSON(sampleData);
+	$(".data-content").load('layouts/embassy/ambassador.html', function(){
+		$(this).find("img").attr("src", "assets/img/embassy/" + ambassadorData.image);
+		$(this).find("#name").text(ambassadorData.name);
+		$(this).find("#position").text(ambassadorData.article + ambassadorData.position + ":");
+		$(this).find("#text").text(ambassadorData.text);
+		$(this).find("#ambassador-audience-actions button").text(ambassadorData.answer);
+	});
+
+}
+
 function loadBuildingAnimation(sampleData){
-	var orderBuildingData = $.parseJSON(sampleData);
+	var buildingData = $.parseJSON(sampleData);
 	$(".data-content").load('layouts/building/buildingAnimation.html', function(){
-		$(this).find("#animation-content").css("background", "url("+orderBuildingData.animation+")");
-		$(this).find("#construction-report #completed-structure").attr("src", "assets/img/building/"+orderBuildingData.completeStructureImage);
-		$(this).find("#construction-report h2#roof-report-text").text(orderBuildingData.reportRoof);
-		$(this).find("#construction-report h2#walls-report-text").text(orderBuildingData.reportWalls);
-		$(this).find("#construction-report h2#windows-report-text").text(orderBuildingData.reportWindows);
-		$(this).find("#construction-report h2#doors-report-text").text(orderBuildingData.reportDoors);
-		$(this).find("#construction-report #report-titleing h2 span#structure-name").text(orderBuildingData.structureType);
-		$(this).find("#construction-report #report-titleing h2 span#structure-date").text(orderBuildingData.date);
+		var report = $(this).find("#construction-report"),
+			title  = report.find("#report-titleing h2");
+		$(this).find("#animation-content")
+			   .css("background", "url(assets/gif/"+buildingData.animation+")");
+		report.find("#completed-structure")
+			  .attr("src", "assets/img/building/"+buildingData.image);
+		report.find("#roof-report-text")
+			  .text(buildingData.reportRoof);
+		report.find("#walls-report-text")
+			  .text(buildingData.reportWalls);
+		report.find("#windows-report-text")
+			  .text(buildingData.reportWindows);
+		report.find("#doors-report-text")
+			  .text(buildingData.reportDoors);
+		title.find("#structure-name")
+			  .text(buildingData.structureType);
+		title.find("#structure-date")
+			  .text(buildingData.date);
 	});
 }
 
@@ -170,10 +266,14 @@ function loadCelebrationAnimatorHtml(){
 	});
 }
 
+function loadEmbassySecretaryHtml(){
+	$(".data-content").load('layouts/embassy/embassySecretary.html');
+}
+
 function loadEmergencyHtml(sampleData){
-	var emergencyData 	 = $.parseJSON(sampleData);
-	var emergencyImage 	 = emergencyData.image;
-	var emergencyMessage = emergencyData.message;
+	var emergencyData 	 = $.parseJSON(sampleData),
+		emergencyImage 	 = emergencyData.image,
+		emergencyMessage = emergencyData.message;
 
 	$(".data-content").load('layouts/emergency/emergency.html', function(){
 		$(this).find("#emergencyImage").attr("src", emergencyImage);
@@ -186,13 +286,14 @@ function loadEmergencyOperatorHtml(){
 }
 
 function loadGovernmentHtml(sampleData){
-	var governmentData 	= $.parseJSON(sampleData);
-	var governmentName 	= governmentData.governmentName;
-	var governmentImage = governmentData.governmentImage;
-	var governmentText 	= governmentData.governmentGreetings;
+	var governmentData 	= $.parseJSON(sampleData),
+		governmentName 	= governmentData.governmentName,
+		governmentImage = governmentData.governmentImage,
+		governmentText 	= governmentData.governmentGreetings;
 	$(".data-content").load('layouts/government/government.html', function(){
-		var dialogWindow = $(this).find("#government-meeting #conversation p");
-		var dialogImage  = $(this).find("#government-meeting img");
+		var meeting 	 = $(this).find("#government-meeting"),
+			dialogWindow = meeting.find("#conversation p"),
+			dialogImage  = meeting.find("img");
 		dialogImage.attr("src", "assets/img/government/"+governmentImage);
 		dialogWindow.html("<strong>"+governmentName+":</strong><span>"+governmentText+"</span>");
 	});
@@ -203,26 +304,34 @@ function loadGovernmentSecretatyHtml(){
 }
 
 function loadMassMediaHtml(sampleData){
-	var massMediaData = $.parseJSON(sampleData);
-	var tvData = massMediaData.tv;
-	var siteData = massMediaData.site;
+	var massMediaData = $.parseJSON(sampleData),
+		tvData = massMediaData.tv,
+		siteData = massMediaData.site;
 
 	$(".data-content").load('layouts/massMedia/massMedia.html', function(){
-		$(this).find("#date").text(massMediaData.date);
-		$(this).find("#party-name").text("#"+massMediaData.name);
-		$(this).find("#pc-24-time").text("Posted at " + tvData.time);
-		$(this).find("#pcb-time").text("Posted at "+siteData.time);
-		$(this).find("#pc-24-image").attr("src", "assets/img/massMedia/" + tvData.image);
-		$(this).find("#pc-24 span").text(tvData.text);
-		$(this).find("#pcb-image").attr("src", "assets/img/massMedia/" + siteData.image);
-		$(this).find("#pcb span").text(siteData.text);
+		$(this).find("#date")
+			   .text(massMediaData.date);
+		$(this).find("#party-name")
+			   .text("#"+massMediaData.name);
+		$(this).find("#pc-24-time")
+			   .text("Posted at " + tvData.time);
+		$(this).find("#pcb-time")
+			   .text("Posted at "+siteData.time);
+		$(this).find("#pc-24-image")
+			   .attr("src", "assets/img/massMedia/" + tvData.image);
+		$(this).find("#pc-24 span")
+			   .text(tvData.text);
+		$(this).find("#pcb-image")
+			   .attr("src", "assets/img/massMedia/" + siteData.image);
+		$(this).find("#pcb span")
+			   .text(siteData.text);
 	});
 }
 
 function loadMayorHtml(sampleData){
 	var mayorData = $.parseJSON(sampleData);
-	var mayorName = mayorData.mayorName;
-	var mayorText = mayorData.mayorGreetings;
+		mayorName = mayorData.mayorName;
+		mayorText = mayorData.mayorGreetings;
 	$(".data-content").load('layouts/mayor/mayor.html', function(){
 		var dialogWindow = $(this).find("#mayor-meeting #conversation p");
 		dialogWindow.html("<strong>"+mayorName+":</strong> "+mayorText);
@@ -233,6 +342,13 @@ function loadMayorSecretatyHtml(){
 	$(".data-content").load('layouts/mayor/secretary.html');
 }
 
+function loadMainScientistHtml(){
+	$(".data-content").load('layouts/laboratory/mainScientist.html');
+}
 
-
+function loadScienceSettingsHtml(){
+	$(".data-content").load('layouts/laboratory/scienceSettings.html', function(){
+		checkSearching();
+	});
+}
 

@@ -19,6 +19,7 @@ input{
 	border: 2px solid gold;;
 }
 
+
 .disabled{
 	background: #eee !important;
     color: #ccc !important;
@@ -26,6 +27,10 @@ input{
 
 .black{
 	background: #4b4e53;
+}
+
+.blue{
+	background: #658abf;
 }
 
 .cian{
@@ -437,8 +442,8 @@ input{
 	background: #eee;
 }
 
-#building .structure.structure-active{
-	background: #FFFF66;
+#building .structure.structure-active, #sciense-directions .direction.direction-active{
+	background: #FFFF66 !important;
     border-top: 2px solid transparent;
     box-shadow: 3px 6px 95px 18px gold;
 }
@@ -530,6 +535,75 @@ input{
     font-size: 12px;
     color: #bbb;
 }
+
+/*[--------------
+ * 9. Embassy
+ *--------------]
+ */
+
+#ambassador-audience #conversation p#ambassador-text{
+   font-size: 20px;
+	margin: 12% 0px;
+   padding-left: 20px;
+   text-align: left;
+}
+
+#ambassador-audience-actions button{
+   padding-left: 20px;
+   padding-right: 20px;
+}
+
+/*[--------------
+* 10. Laboratory
+*--------------]
+*/
+
+#laboratory #conversation p#scientist-text{
+    font-size: 20px;
+    margin: 14% 0;
+    padding-left: 20px;
+	text-align: left;
+}
+
+#sciense-directions .direction{
+	border-top: 2px solid mediumturquoise;
+	cursor: pointer;
+    min-height: 199px;
+    padding: 20px 0px;
+}
+
+#sciense-directions .direction:hover{
+	background: #eee;
+}
+
+#sciense-directions .direction:last-child{
+	border-bottom: 2px solid mediumturquoise;
+	margin-bottom: 20px;
+}
+
+#sciense-directions .direction img{
+	float: left;
+	height: 200px;
+    width: 200px;
+}
+
+#sciense-directions .direction .description{
+	float: right;
+	padding-top: 20px;
+    text-align: left;
+    width: 68%;
+}
+
+#sciense-directions .direction .description .desc-text, #sciense-directions .direction .description .value-text{
+	font-size: 16px;
+	padding-left: 20px;
+}
+
+#sciense-directions .direction .description .value-text strong{
+    line-height: 30px;
+}
+
+
 
 
 

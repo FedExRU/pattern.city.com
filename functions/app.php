@@ -77,7 +77,7 @@ if($_POST['action'] == "building"){
 			$output['doorsCount']
 		);
 		$report ['animation'] 				= $structure->getStructureAnimation();
-		$report ['completeStructureImage'] 	= $structure->getStructureImage();
+		$report ['image'] 	= $structure->getStructureImage();
 		$report ['structureType'] 			= $structure->getStructureType();
 		$report['date'] 					= date('d.m.Y');
 	}
@@ -117,6 +117,24 @@ if($_POST['action'] == 'massMedia'){
 		],
 		'date' => date("l, F, j, Y"),
 		'name' => $_POST['partyName']
+	];
+
+	echo json_encode($data);
+}
+
+if($_POST['action'] == 'embassy'){
+
+	include("../class/embassy.php");
+
+	$ambassador = Embassy::arrangeMeetingWith($_POST['countryAmbassador']);
+
+	$data = [
+		'answer'	=> $ambassador->getAnswer(),
+		'article'	=> $ambassador->getArticle(),
+		'image' 	=> $ambassador->getImage(),
+		'name'  	=> $ambassador->getName(),
+		'position' 	=> $ambassador->getPosition(),
+		'text'  	=> $ambassador->sayHello(),
 	];
 
 	echo json_encode($data);
