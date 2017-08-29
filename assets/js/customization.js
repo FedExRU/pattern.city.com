@@ -75,13 +75,12 @@ function checkStructure(){
 	
 }
 
-
 /*[--------------------------------------------------------------------------------------
- * 3. Searching
+ * 3. Researching
  *---------------------------------------------------------------------------------------]
  */
 
- function checkSearching(){
+ function checkResearching(){
 
  	$(document).ready(function(){
  		$('.direction').click(function(){
@@ -97,5 +96,13 @@ function checkStructure(){
  			}
  		});
  	});
+ }
 
+ function breakAnimation(){
+ 	$(document).ready(function(){
+ 		setTimeout(function() {
+			$("#reseaching").remove();
+			$('#research-content').fadeIn(400);
+		}, 5000);
+ 	});
  }

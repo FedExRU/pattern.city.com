@@ -164,9 +164,20 @@ function callGovernment(position){
 }
 
 function callLaboratory(){
-	var activeDirection = $("#sciense-directions .direction.direction-active");
-
-	activeDirection.css("background", "red");
+	var activeDirection = $("#sciense-directions .direction.direction-active"),
+		direction = activeDirection.attr("data-direction");
+	
+	$.ajax({
+		type: "POST",
+		url: app,
+		data: {action: "laboratory", direction},
+		success: function(data){
+			loadResearchingHtml(data);
+		},
+		error: function(){
+			alert("Something went wrong! Try again later");
+		}
+	});
 }
 
 function callMassMedia(){
@@ -247,6 +258,7 @@ function loadBuildingAnimation(sampleData){
 			  .text(buildingData.structureType);
 		title.find("#structure-date")
 			  .text(buildingData.date);
+		breakAnimation();
 	});
 }
 
@@ -346,9 +358,25 @@ function loadMainScientistHtml(){
 	$(".data-content").load('layouts/laboratory/mainScientist.html');
 }
 
+function loadResearchingHtml(sampleData){
+	$(".data-content").load('layouts/laboratory/reseaching.html', function(){
+		var seachingData = $.parseJSON(sampleData),
+			image = seachingData.image,
+			name = seachingData.name,
+			wiki = seachingData.wiki,
+			path = "assets/img/laboratory/",
+			report = $("#research-content #research-report");
+
+		report.find('img').attr("src", path + image);
+		report.find('.tech-description h2').text(name);
+		report.find('.tech-description p a').attr("href", wiki);
+		breakAnimation();
+	});
+}
+
 function loadScienceSettingsHtml(){
 	$(".data-content").load('layouts/laboratory/scienceSettings.html', function(){
-		checkSearching();
+		checkResearching();
 	});
 }
 

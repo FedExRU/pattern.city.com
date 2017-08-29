@@ -69,6 +69,7 @@ abstract class Media implements EventSubscriber{
         return $this->image;
     }
 
+    abstract public function getTime();
     abstract public function notify($obj);
 }
 
@@ -77,6 +78,10 @@ class TelevisionMassMedia extends Media{
     function __construct(){
         parent::__construct();
         $this->image = "tv.png";
+    }
+
+    public function getTime(){
+        return date("g:i a", time()-3*60);
     }
 
 	public function notify($obj){
@@ -91,6 +96,10 @@ class InternetMassMedia extends Media{
     function __construct(){
         parent::__construct();
         $this->image = "site.png";
+    }
+
+    public function getTime(){
+        return date("g:i a");
     }
 
 	public function notify($obj){

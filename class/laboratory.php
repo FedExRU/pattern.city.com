@@ -15,40 +15,138 @@ class Technology
 	/*
 	* Имя исследованной технологии
 	*/
-	private  $name;
+	private $name;
+	private $image;
+	private $wiki;
 
 	function __construct(){
 		$this->techStack = array(
-			'War' 		=> array(
-							'0' => 'Missilery',
-							'1' => 'Battle Interaction',
-							'2' => 'Radar',
-							'3' => 'Ballistics',
-							'4' => 'Aircraft',
-							'5' => 'Dynamite',
-							'6' => 'Mobile Army',
-							'7' => 'Stealth', 
-						),
-			'Social' 	=> array(
-							'0' => 'Banking',
-							'1' => 'State Service',
-							'2' => 'Industrialization',
-							'3' => 'Standardization',
-							'4' => 'Fertilizers',
-							'5' => 'Education',
-							'6' => 'Philosophy',
-							'7' => 'Culture',
-						),
+			'War' 	=> array(
+				'0' => array(
+					'name' =>'Missilery',
+					'image' => 'missilery.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Missile'
+				),
+				'1' => array(
+					'name' =>'Battle Interaction',
+					'image' => 'battleInteraction.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Military_tactics'
+				),
+				'2' => array(
+					'name' =>'Radar',
+					'image' => 'radar.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Radar'
+				),
+				'3' => array(
+					'name' =>'Ballistics',
+					'image' => 'ballistics.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Ballistics'
+				),
+				'4' => array(
+					'name' =>'Aircraft',
+					'image' => 'aircraft.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Aircraft'
+				),
+				'5' => array(
+					'name' =>'Dynamite',
+					'image' => 'dynamite.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Dynamite'
+				),
+				'6' => array(
+					'name' =>'Mobile Army',
+					'image' => 'mobileArmy.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Military_logistics'
+				),
+				'7' => array(
+					'name' =>'Stealth',
+					'image' => 'stealth.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Stealth_technology'
+				)
+			),
+			'Social' => array(
+				'0' => array(
+					'name' => 'Banking',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'1' => array(
+					'name' => 'State Service',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'2' => array(
+					'name' => 'Industrialization',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'3' => array(
+					'name' => 'Standardization',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'4' => array(
+					'name' => 'Fertilizers',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'5' => array(
+					'name' => 'Education',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'6' => array(
+					'name' => 'Philosophy',
+					'image' => 'banking.png',
+					'wiki' => ''
+				),
+				'7' => array(
+					'name' => 'Culturology',
+					'image' => 'banking.png',
+					'wiki' => ''
+				)
+			),
 			'Medicine' 	=> array(
-							'0' => 'Biology',
-							'1' => 'Freezing',
-							'2' => 'Plastics',
-							'3' => 'Penicillin',
-							'4' => 'Nuclear Physics',
-							'5' => 'Ecology',
-							'6' => 'Nuclear Fusion',
-							'7' => 'Nanotechnology',
-						),
+				'0' => array(
+					'name' => 'Biology',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'1' => array(
+					'name' => 'Freezing',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'2' => array(
+					'name' => 'Plastics',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'3' => array(
+					'name' => 'Penicillin',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'4' => array(
+					'name' => 'Nuclear Physics',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'5' => array(
+					'name' => 'Ecology',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'6' => array(
+					'name' => 'Nuclear Fusion',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				),
+				'7' => array(
+					'name' => 'Nanotechnology',
+					'image' => 'ecology.png',
+					'wiki' => ''
+				)
+			),
 		);
 	}
 
@@ -65,14 +163,24 @@ class Technology
 	}
 
 	public function setSampleTech(){
-		$this->name = $this->techStack[$this->researchDirection][rand(0, 7)];
+		$sampleTech  = $this->techStack[$this->researchDirection][rand(0, 7)];
+		$this->name  = $sampleTech['name'];
+		$this->image = $sampleTech['image'];
+		$this->wiki = $sampleTech['wiki'];
 	}
 
 	public function getName(){
 		return $this->name;
 	}
-}
 
+	public function getImage(){
+		return $this->image;
+	}
+
+	public function getWiki(){
+		return $this->wiki;
+	}
+}
 
 /**
 * Абстрактный исследователь
@@ -81,6 +189,39 @@ class Technology
 abstract class Researcher
 {
 	protected $technology;
+	protected $method;
+	protected $time;
+	protected $direction;
+	private   $additionalParams;
+
+	function __construct($sampleDirection){
+		$this->additionalParams = array(
+			'War' => array(
+				'time' 		=> 'Two years',
+				'method' 	=> 'Modeling'
+			),
+			'Social' => array(
+				'time' 		=> 'One year',
+				'method' 	=> 'Abstraction'
+			),
+			'Medicine' => array(
+				'time' 		=> 'Laboratory Experience',
+				'method' 	=> 'Five years'
+			)
+		);
+		
+		$this->setParams(
+			$sampleDirection,
+			$this->additionalParams[$sampleDirection]['method'],
+			$this->additionalParams[$sampleDirection]['time']
+		);
+	}
+
+	public function setParams($newDirection, $newMethod, $newTime){
+		$this->method 		= $newMethod;
+		$this->time 		= $newTime;
+		$this->direction 	= $newDirection;
+	}
 	
 	public function search(){
 		$this->technology = new Technology();
@@ -104,16 +245,20 @@ abstract class Researcher
 */
 class WarResearcher extends Researcher
 {	
+	function __construct(){
+		parent::__construct('War');
+	}
+
 	public function chooseResearchMethod(){
-		$this->technology->setResearchMethod('Modeling');
+		$this->technology->setResearchMethod($this->method);
 	}
 
 	public function chooseResearchDirection(){
-		$this->technology->setResearchDirection('War');
+		$this->technology->setResearchDirection($this->direction);
 	}
 
 	public function chooseResearchTime(){
-		$this->technology->setResearchTime('Two years');
+		$this->technology->setResearchTime($this->time);
 	}
 }
 
@@ -122,16 +267,20 @@ class WarResearcher extends Researcher
 */
 class MedicineResearcher extends Researcher
 {
+	function __construct(){
+		parent::__construct('Medicine');
+	}
+
 	public function chooseResearchMethod(){
-		$this->technology->setResearchMethod('Laboratory Experience');
+		$this->technology->setResearchMethod($this->method);
 	}
 
 	public function chooseResearchDirection(){
-		$this->technology->setResearchDirection('Medicine');
+		$this->technology->setResearchDirection($this->direction);
 	}
 
 	public function chooseResearchTime(){
-		$this->technology->setResearchTime('Five years');
+		$this->technology->setResearchTime($this->time);
 	}
 }
 
@@ -140,19 +289,22 @@ class MedicineResearcher extends Researcher
 */
 class SocialResearcher extends Researcher
 {
+	function __construct(){
+		parent::__construct('Social');
+	}
+
 	public function chooseResearchMethod(){
-		$this->technology->setResearchMethod('Abstraction');
+		$this->technology->setResearchMethod($this->method);
 	}
 
 	public function chooseResearchDirection(){
-		$this->technology->setResearchDirection('Social');
+		$this->technology->setResearchDirection($this->direction);
 	}
 
 	public function chooseResearchTime(){
-		$this->technology->setResearchTime('One year');
+		$this->technology->setResearchTime($this->time);
 	}
 }
-
 
 /**
 * Лаборатория, отвечающая за исследование технологий исследователями
@@ -177,20 +329,5 @@ class Laboratory
 		return $this->researcher->publish();
 	}
 }
-
-// $lab = new Laboratory();
-
-// $warResearcher = new WarResearcher();
-// $medResearcher = new MedicineResearcher();
-// $socResearcher = new SocialResearcher();
-
-// $lab->provideEquipmentTo($medResearcher);
-
-// $lab->searchTechnology();
-
-// $newTechnology = $lab->getTechnology();
-
-// echo '<pre>';
-// var_dump($newTechnology->getName());
 
 ?>

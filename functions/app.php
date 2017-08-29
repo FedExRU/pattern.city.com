@@ -1,39 +1,51 @@
 <?php 
 
-$data = [];
+/**
+ * @var Constant CLASS_PATH
+ */
+
+define(CLASS_PATH,"../class/");
+
+/**
+ * @var Returning data to layouts
+ */
+
+$returnData = array();
+
+/**
+ * @var Checking actions cases
+ */
 
 if($_POST['action'] == "mayor"){
 
-	include("../class/mayor.php");
+	include(CLASS_PATH."mayor.php");
 
 	$mayor = Mayor::getMayor("Jonathan", "Burnside");
-	$data['mayorName']		= $mayor::getName();
-	$data['mayorGreetings'] = $mayor::introduceYourself();
+	$returnData['mayorName']		= $mayor::getName();
+	$returnData['mayorGreetings'] = $mayor::introduceYourself();
 
-	echo json_encode($data);
+	echo json_encode($returnData);
 
 }
 
 if($_POST['action'] == "government"){
 
-	include("../class/government.php");
+	include(CLASS_PATH."government.php");
 
 	$personalData = $_POST['personalData'];
 	$governmentPerson = Government::getGovernmentPerson($personalData);
 
-	$introduceData = [];
-
-	$introduceData['governmentName'] 		= $governmentPerson::getFirstName($personalData['position'])." ".$governmentPerson::getLastName($personalData['position']);
-	$introduceData['governmentImage'] 		= $governmentPerson::getImage($personalData['position']);
-	$introduceData['governmentGreetings']  	= $governmentPerson::getIntroduceText($personalData['position']);
+	$returnData['governmentName'] 		= $governmentPerson::getFirstName($personalData['position'])." ".$governmentPerson::getLastName($personalData['position']);
+	$returnData['governmentImage'] 		= $governmentPerson::getImage($personalData['position']);
+	$returnData['governmentGreetings']  	= $governmentPerson::getIntroduceText($personalData['position']);
 
 
-	echo json_encode($introduceData);
+	echo json_encode($returnData);
 }
 
 if($_POST['action'] == "building"){
 
-	include("../class/building.php");
+	include(CLASS_PATH."building.php");
 
 	parse_str($_POST['structureData'], $output);
  
@@ -42,7 +54,6 @@ if($_POST['action'] == "building"){
 	}
 
 	$structure 		= null;
-	$report 		= [];
 
 	switch ($output['buildType']) {
 		case 'house':
@@ -57,37 +68,37 @@ if($_POST['action'] == "building"){
 	}
 
 	if(!empty($structure)){
-		$report['reportRoof'] 				= $structure->buildRoof(
+		$returnData['reportRoof'] 				= $structure->buildRoof(
 			$output['roofType'],
 			"metal tile"
 		);
-		$report['reportWalls'] 				= $structure->buildWalls(
+		$returnData['reportWalls'] 				= $structure->buildWalls(
 			"block","stone" , 
 			$output['wallsHeight'], 
 			rand(4, 20)
 		);
-		$report['reportWindows'] 			= $structure->buildWindows(
+		$returnData['reportWindows'] 			= $structure->buildWindows(
 			"two-doore", 
 			$output['windowsMaterial'], 
 			rand(5, 30)
 		);
-		$report['reportDoors'] 				= $structure->buildDoors(
+		$returnData['reportDoors'] 				= $structure->buildDoors(
 			"swing",
 			"wood", 
 			$output['doorsCount']
 		);
-		$report ['animation'] 				= $structure->getStructureAnimation();
-		$report ['image'] 	= $structure->getStructureImage();
-		$report ['structureType'] 			= $structure->getStructureType();
-		$report['date'] 					= date('d.m.Y');
+		$returnData ['animation'] 				= $structure->getStructureAnimation();
+		$returnData ['image'] 					= $structure->getStructureImage();
+		$returnData ['structureType'] 			= $structure->getStructureType();
+		$returnData ['date'] 					= date('d.m.Y');
 	}
 
-	echo json_encode($report);
+	echo json_encode($returnData);
 }
 
 if($_POST['action'] == 'emergency'){
 
-	include("../class/emergency.php");
+	include(CLASS_PATH."emergency.php");
 
 	$emergency = new Emegrency($_POST['cause']);
 
@@ -97,38 +108,38 @@ if($_POST['action'] == 'emergency'){
 
 if($_POST['action'] == 'massMedia'){
 
-	include("../class/massMedia.php");
+	include(CLASS_PATH."massMedia.php");
 
 	$pc24 	= new TelevisionMassMedia();
 	$pcb 	= new InternetMassMedia();
 
 	Event::getInstance()->setEvent($_POST['partyName']);
 	
-	$data = [
+	$returnData = [
 		'tv' => [
 			'text' 	=> $pc24->getNotifyText(),
 			'image' => $pc24->getImage(),
-			'time' => date("g:i a", time()-3*60)
+			'time'  => $pc24->getTime()
 		],
 		'site' => [
 			'text' 	=> $pcb->getNotifyText(),
 			'image' => $pcb->getImage(),
-			'time' =>  date("g:i a")
+			'time' =>  $pcb->getTime()
 		],
 		'date' => date("l, F, j, Y"),
 		'name' => $_POST['partyName']
 	];
 
-	echo json_encode($data);
+	echo json_encode($returnData);
 }
 
 if($_POST['action'] == 'embassy'){
 
-	include("../class/embassy.php");
+	include(CLASS_PATH."embassy.php");
 
 	$ambassador = Embassy::arrangeMeetingWith($_POST['countryAmbassador']);
 
-	$data = [
+	$returnData = [
 		'answer'	=> $ambassador->getAnswer(),
 		'article'	=> $ambassador->getArticle(),
 		'image' 	=> $ambassador->getImage(),
@@ -137,7 +148,48 @@ if($_POST['action'] == 'embassy'){
 		'text'  	=> $ambassador->sayHello(),
 	];
 
-	echo json_encode($data);
+	echo json_encode($returnData);
+}
+
+// $_POST['action'] = 'laboratory';
+// $_POST['direction'] = "War";
+
+if($_POST['action'] == 'laboratory'){
+
+	include(CLASS_PATH."laboratory.php");
+
+	$laboratory = new Laboratory();
+	$researcher = null;
+
+	switch ($_POST['direction']) {
+		case 'War':
+			$researcher = new WarResearcher();
+			break;
+		case 'Medicine':
+			$researcher = new MedicineResearcher();
+			break;
+		case 'Social':
+			$researcher = new SocialResearcher();
+			break;
+	}
+
+	if(!empty($researcher)){
+		$laboratory->provideEquipmentTo($researcher);
+		$laboratory->searchTechnology();
+
+		
+
+		$newTechnology = $laboratory->getTechnology();
+
+		$returnData = [
+			'name' => $newTechnology->getName(),
+			'image' => $newTechnology->getImage(),
+			'wiki' => $newTechnology->getWiki()
+		];
+	}
+
+	echo json_encode($returnData);
+
 }
 
 ?>
