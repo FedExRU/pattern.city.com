@@ -1,4 +1,72 @@
 /*[--------------------------------------------------------------------------------------
+ * 0. Document
+ *---------------------------------------------------------------------------------------]
+ */
+
+$(document).ready(function(){
+	presentScrollUp();
+
+	$('#up').click(function(){
+		$("body, html").animate({
+			scrollTop: 0}, 1000);
+	});
+
+	$('.remodal-wrapper').click(function(){
+		if(!$(this).hasClass('remodal-is-opened')){
+			hideBackToAppButton();
+			hideSourceCodeButton();
+			showDataContent();
+		}
+	});
+
+})
+
+$(window).scroll(function(){
+	presentScrollUp();
+});
+
+function breakAnimation(time, fadeIn = false){
+	$(document).ready(function(){
+		if(fadeIn)
+			$('.fade-in-animation').css("opacity", '1');
+		setTimeout(function() {
+			$('.animation-content').remove();
+			$('.after-animation').fadeIn(400);
+		}, time);
+	});
+}
+
+function hideBackToAppButton(){
+	$('#back-to-app').hide();
+}
+
+function hideSourceCodeButton(){
+	$('#source-code').hide();
+}
+
+function presentScrollUp(){
+	if($(window).scrollTop() > 200)
+		$('#up').fadeIn(500);
+	else
+		$('#up').fadeOut(500);
+}
+
+function showBackToAppButton(){
+	$('#back-to-app').show();
+}
+
+function showDataContent(){
+	$('.source').hide();
+	$('.data-content').show();
+	$('.remodal').removeClass('code-width');
+}
+
+function showSourceCodeButton(){
+	$('#source-code').show();
+	loadCode();
+}
+
+/*[--------------------------------------------------------------------------------------
  * 1. Mass media
  *---------------------------------------------------------------------------------------]
  */
@@ -33,7 +101,7 @@ function checkStructure(){
 			}
 			else{
 				removeAllStructures();
-				structure.addClass("structure-active");
+				structure.addClass('structure-active');
 			}
 
 			if(structure.hasClass('structure-active')){
@@ -86,23 +154,14 @@ function checkStructure(){
  		$('.direction').click(function(){
  			if($(this).hasClass('direction-active')){
  				$(this).removeClass('direction-active');
- 				$("#research-choose-actions .remodal-confirm").addClass("disabled");
+ 				$('#research-choose-actions .remodal-confirm').addClass('disabled');
  			}else{
  				$('.direction').each(function(){
  					$(this).removeClass('direction-active');
  				});
  				$(this).addClass('direction-active');
- 				$("#research-choose-actions .remodal-confirm").removeClass("disabled");
+ 				$('#research-choose-actions .remodal-confirm').removeClass('disabled');
  			}
  		});
- 	});
- }
-
- function breakAnimation(){
- 	$(document).ready(function(){
- 		setTimeout(function() {
-			$("#reseaching").remove();
-			$('#research-content').fadeIn(400);
-		}, 5000);
  	});
  }

@@ -166,6 +166,8 @@ function callGovernment(position){
 function callLaboratory(){
 	var activeDirection = $("#sciense-directions .direction.direction-active"),
 		direction = activeDirection.attr("data-direction");
+
+	validateParam(direction);
 	
 	$.ajax({
 		type: "POST",
@@ -233,16 +235,16 @@ function loadAmbassadorHtml(sampleData){
 		$(this).find("#position").text(ambassadorData.article + ambassadorData.position + ":");
 		$(this).find("#text").text(ambassadorData.text);
 		$(this).find("#ambassador-audience-actions button").text(ambassadorData.answer);
+		presentSourceCode('embassy', 'factory_method');
 	});
-
 }
 
 function loadBuildingAnimation(sampleData){
 	var buildingData = $.parseJSON(sampleData);
-	$(".data-content").load('layouts/building/buildingAnimation.html', function(){
+	$(".data-content").load('layouts/building/buildingAnimation.html', function(){ 
 		var report = $(this).find("#construction-report"),
 			title  = report.find("#report-titleing h2");
-		$(this).find("#animation-content")
+		$(this).find("#animation-building")
 			   .css("background", "url(assets/gif/"+buildingData.animation+")");
 		report.find("#completed-structure")
 			  .attr("src", "assets/img/building/"+buildingData.image);
@@ -258,7 +260,10 @@ function loadBuildingAnimation(sampleData){
 			  .text(buildingData.structureType);
 		title.find("#structure-date")
 			  .text(buildingData.date);
-		breakAnimation();
+		breakAnimation(3650, true);
+		setTimeout(function(){
+			presentSourceCode('building', 'abstract_factory');
+		}, 3650);
 	});
 }
 
@@ -288,8 +293,9 @@ function loadEmergencyHtml(sampleData){
 		emergencyMessage = emergencyData.message;
 
 	$(".data-content").load('layouts/emergency/emergency.html', function(){
-		$(this).find("#emergencyImage").attr("src", emergencyImage);
+		$(this).find("#emergencyImage").attr("src","assets/img/emergency/" + emergencyImage);
 		$(this).find("#conversation p").text(emergencyMessage);
+		presentSourceCode('emergency', 'strategy');
 	});
 }
 
@@ -307,7 +313,8 @@ function loadGovernmentHtml(sampleData){
 			dialogWindow = meeting.find("#conversation p"),
 			dialogImage  = meeting.find("img");
 		dialogImage.attr("src", "assets/img/government/"+governmentImage);
-		dialogWindow.html("<strong>"+governmentName+":</strong><span>"+governmentText+"</span>");
+		dialogWindow.html("<strong>"+governmentName+": </strong><span>"+governmentText+"</span>");
+		presentSourceCode('government', 'multione');
 	});
 }
 
@@ -337,6 +344,7 @@ function loadMassMediaHtml(sampleData){
 			   .attr("src", "assets/img/massMedia/" + siteData.image);
 		$(this).find("#pcb span")
 			   .text(siteData.text);
+		presentSourceCode('massMedia', 'observer');
 	});
 }
 
@@ -347,6 +355,7 @@ function loadMayorHtml(sampleData){
 	$(".data-content").load('layouts/mayor/mayor.html', function(){
 		var dialogWindow = $(this).find("#mayor-meeting #conversation p");
 		dialogWindow.html("<strong>"+mayorName+":</strong> "+mayorText);
+		presentSourceCode('mayor', 'singleton');
 	});
 }
 
@@ -370,7 +379,10 @@ function loadResearchingHtml(sampleData){
 		report.find('img').attr("src", path + image);
 		report.find('.tech-description h2').text(name);
 		report.find('.tech-description p a').attr("href", wiki);
-		breakAnimation();
+		breakAnimation(5000);
+		setTimeout(function(){
+			presentSourceCode('laboratory', 'builder');
+		}, 5000);
 	});
 }
 

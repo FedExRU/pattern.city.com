@@ -1,7 +1,6 @@
 <?php 
 
-final class Mayor
-{
+final class Mayor{
 	/**
 	 *
 	 * @var singleton 
@@ -18,12 +17,10 @@ final class Mayor
 	/**
      * @return self
      */
-	public static function getMayor($newFirstName, $newLastName, $newInaugurationDate = NULL ){
+	public static function getMayor($newFirstName, $newLastName, $newInaugurationDate = NULL){
 		if (!(self::$instance instanceof self)){
 			self::$instance = new self();
-			self::setFirstName($newFirstName);
-			self::setLastName($newLastName);
-			empty(self::$newInaugurationDate) ? self::$inaugurationDate = date("F j, Y, g:i a") : self::$inaugurationDate = $newInaugurationDate;
+			self::setParameters($newFirstName, $newLastName, $newInaugurationDate);
 		}
 		return self::$instance;
 	}
@@ -38,6 +35,12 @@ final class Mayor
 
 	public static function setLastName($newLastName){
 		self::$lastName = $newLastName;
+	}
+
+	public static function setParameters($newFirstName, $newLastName, $newInaugurationDate){
+		self::setFirstName($newFirstName);
+		self::setLastName($newLastName);
+		empty(self::$newInaugurationDate) ? self::$inaugurationDate = date("F j, Y, g:i a") : self::$inaugurationDate = $newInaugurationDate;
 	}
 
 	public static function introduceYourself(){

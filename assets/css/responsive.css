@@ -1,0 +1,143 @@
+@media (max-width: 1269px) {
+	#up{
+		right: 10%;
+	}
+}
+
+@media (max-width: 909px) {
+	#up{
+		right: 2%;
+	}
+}
+
+@media (max-width: 586px) {
+
+	article#conversation p{
+		margin: 20px !important;
+	}
+
+	header{
+		padding: 0px 50px;
+	}
+
+	div.source section#source-options{
+		width: 100%;
+	}
+
+	#animation-content{
+		height: 250px;
+	}
+
+	#building-actions{
+		margin-top: 20px;
+	}
+
+	#construction-report #report-titleing{
+		padding: 0px !important;
+		width: 100%;
+	}
+	
+	#construction-report #report-titleing h2 span.report-title-key, #construction-report #report-titleing h2 span.report-title-value{
+		float: none !important;
+	}
+
+	#construction-report #report-titleing h2{
+		text-align: left;
+	}
+
+	#building .structure, #sciense-directions .direction, #research-report{
+		padding-left: 10px !important;
+    	padding-right: 10px !important;
+	}
+	
+	#construction-report img#completed-structure, #construction-report img#clip{
+		display: none;
+	}
+
+	.double-conversation strong{
+		display: block;
+	}
+
+	.double-conversation#conversation p{
+		display: block;
+	}
+
+    #main #patterns > .wrapper .pattern{
+    	float: none !important;
+    	display: block;
+    	margin: 0 auto;
+    	margin-bottom: 20%;
+    }
+
+    #patterns{
+    	min-height: 1200px;
+    }
+
+    #main #patterns > .wrapper .pattern:hover{
+    	border-radius: 5%;
+    	-webkit-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.35);
+    	-moz-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.35);
+    	box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.35);
+    	cursor: pointer;
+    	display: block;
+    	height: 240px;
+		max-width: 260px;
+		padding: 0px;
+		position: relative;
+    	width: 100%;
+    	overflow: hidden;
+    }
+
+	#main #patterns > .wrapper .pattern:hover img{
+		display: block;
+    	height: 200px;
+    	margin: 0 auto;
+    	margin-top: 20px;
+    	opacity: 1;
+    	width: 200px;
+	}
+
+	#main #patterns > .wrapper .pattern h2, #main #patterns > .wrapper .pattern:hover h2, #main #patterns > .wrapper .pattern div.go{
+		display: none;
+	}
+
+	#tags{
+		margin-bottom: 10%;
+	}
+
+	#reseaching{
+		height: 300px;
+	}
+
+	#research-choose-actions button{
+		padding-left: 20px !important
+	}
+
+	.remodal-cancel, .remodal-confirm{
+		margin: 10px !important;
+	}
+
+	.remodal-wrapper .remodal{
+		padding-left: 0px;
+    	padding-right: 0px;
+	}
+
+	#research-content #research-report .tech-description, #sciense-directions .direction .description{
+		width: 100%;
+	}
+
+	#massMedia-actions{
+		margin: 20px !important;
+	}
+
+	.single-block, .single-block *{
+		float: none !important;
+		height: auto !important;
+		max-width: none !important;
+		padding-left: 0px !important;
+	}
+
+    .wrapper{
+       all: unset;
+    }
+}

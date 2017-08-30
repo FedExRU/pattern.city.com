@@ -1,30 +1,10 @@
 <?php 
-// interface Greetings{
-// 	public function simpleGreetings();
-// }
 
-// class AmbassatorGreetings implements Greetings{
-// 	public function simpleGreetings(){
-// 		return "Hello";
-// 	}
-// }
-
-// interface Embassy{
-// 	public function sayHello();
-// }
-
-// class SpainAmbassator implements Embassy{
-// 	public function sayHello(){
-// 		return new AmbassatorGreetings();
-// 	}
-// }
-
-// $sp = new SpainAmbassator();
-// echo $sp->sayHello()->simpleGreetings();
-/*
- * Абстрактный создатель Creator
- */
-
+/**
+*
+* @var fabric method
+*
+*/
 
 abstract class Embassy{
 
@@ -43,7 +23,7 @@ abstract class Embassy{
 		return $this->position;
 	}
 	/*
-	 * Абстрактный продукт Product
+	 * Abstract products
 	 */
 	abstract public function getAnswer();
 	abstract public function getArticle();
@@ -52,7 +32,7 @@ abstract class Embassy{
 }
 
 /*
- * Конкретные создатели инкапсулирует конкретный продукт (приветствие)
+ * Conserne creators encapsulates products
  */
 
 class EnglishAmbassador extends Embassy{
@@ -135,7 +115,7 @@ class RussianAmbassador extends Embassy{
 	}
 
 	public function sayHello(){
-			return "Приветствую Вас в моем кабинете! Меня зовут Роман Савельвев, и я представляю
+			return "Приветствую Вас в моем кабинете! Меня зовут Роман Савельев, и я представляю
 		славную страну Россия в этом городе. Можете обращаться ко мне в любое время. Чем я могу
 		Вам помочь, друг мой?";
 	}
@@ -152,5 +132,32 @@ class RussianAmbassador extends Embassy{
 		return " ";
 	}
 }
+
+/*
+ * Alternative method
+ */
+
+// interface Greetings{
+// 	public function simpleGreetings();
+// }
+
+// class AmbassatorGreetings implements Greetings{
+// 	public function simpleGreetings(){
+// 		return "Hello";
+// 	}
+// }
+
+// interface Embassy{
+// 	public function sayHello();
+// }
+
+// class SpainAmbassator implements Embassy{
+// 	public function sayHello(){
+// 		return new AmbassatorGreetings();
+// 	}
+// }
+
+// $sp = new SpainAmbassator();
+// echo $sp->sayHello()->simpleGreetings();
 
 ?>

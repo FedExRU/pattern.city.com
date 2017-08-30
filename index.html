@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" 		content="initial-scale=1, maximum-scale=1">
 	<title>Welcome to Pattern City</title>
 	<meta name="description" 	content="Illustrative examples of design patterns">
 	<meta property="og:title" 	content="Pattern City" />
 	<meta property="og:type" 	content="website" />
 	<meta property="og:url" 	content="http://localhost/pattern.city.com/">
 	<meta property="og:image" 	content="assets/img/patterns/mayor.png" />
+	<link rel='shortcut icon' 	type='image/x-icon' href='favicon.ico' />
 	<link rel="stylesheet" 		href="assets/css/style.css">
+	<link rel="stylesheet" 		href="assets/css/responsive.css">
 	<link rel="stylesheet" 		href="assets/libs/css/remodal.css">
 	<link rel="stylesheet" 		href="assets/libs/css/remodal-default-theme.css">
 </head>
 <body>
 
+	<header>
+		<h1>Welcome to the Pattern City</h1>
+		<h2>What would you like to do in the next time?</h2>
+	</header>
 
 	<div id="main">
-
-		<header>
-			<h1 class = "main-title">Welcome to the Patterns City</h1>
-			<h2 class = "subtitle">What would you like to do in the next time?</h2>
-		</header>
 
 		<section id="patterns">
 
@@ -91,15 +93,41 @@
 
 		<div class="remodal" data-remodal-id="modal">
   			<button data-remodal-action="close" class="remodal-close"></button>
+  			<button class="action" id="source-code" title="View source code"></button>
+  			<button class="action" id="back-to-app" title="Back to application"></button>
+  			<input type="hidden" name="actionSource" id="actionSource" value = "">
   			<div class="data-content"></div>
+  			<div class="source">
+  				<section id="source-options">
+  					<span data-source="app">app.php</span>
+  					<span data-source="pattern">Singleton.php</span>
+  				</section>
+  				<section id="source-code-content">
+  					<article class = "code" data-source="app">
+  						sfgdfsg
+  					</article>
+  					<article class = "code" data-source="pattern">
+  						sdfgsdgdsf
+  					</article>
+  				</section>
+  			</div>
 		</div>
 
-		<footer>	</footer>
+		<div id="up"></div>
+
 	</div>
+
+	<footer>
+		<p>© Powered by <a href="https://github.com/FedExRU/pattern.city.com">FedExRU</a>, 2017</p>
+	</footer>
+
 </body>
+
 <script src="assets/libs/js/jquery-3.2.1.min.js"></script>
 <script src="assets/libs/js/remodal.min.js"></script>
-<script src="assets/js/data-modal.js"></script>
 <script src="assets/js/customization.js"></script>
+<script src="assets/js/data-modal.js"></script>
+<script src="assets/js/source-code.js"></script>
 <script src="assets/js/validation.js"></script>
+
 </html>

@@ -6,14 +6,26 @@
 *
 */
 
+/**
+*
+* @var action interface 
+*
+*/
+
 interface ResqueStrategy{
 	public function callHelp($cause);
 }
 
+/**
+*
+* @var implementing action interface 
+*
+*/
+
 class PoliceDepartment implements ResqueStrategy{
 	public function callHelp($cause){
 		$data ['message'] = "Police are on their way for a ".$cause."!";
-		$data ['image'] = "assets/img/emergency/police.png";
+		$data ['image'] = "police.png";
 
 		return $data;
 	}
@@ -22,7 +34,7 @@ class PoliceDepartment implements ResqueStrategy{
 class FireDepartment implements ResqueStrategy{
 	public function callHelp($cause){
 		$data ['message'] = "Firefighters are on their way for a ".$cause."!";
-		$data ['image'] = "assets/img/emergency/firefighters.png";
+		$data ['image'] = "firefighters.png";
 
 		return $data;
 	}
@@ -31,11 +43,17 @@ class FireDepartment implements ResqueStrategy{
 class Abmulance implements ResqueStrategy{
 	public function callHelp($cause){
 		$data ['message'] = "Abmulance are on their way for an ".$cause."!";
-		$data ['image'] = "assets/img/emergency/ambulance.png";
+		$data ['image'] = "ambulance.png";
 
 		return $data;
 	}
 }
+
+/**
+*
+* Using action in needed context 
+*
+*/
 
 class Emegrency{
 	public $danger;

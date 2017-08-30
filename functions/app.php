@@ -151,9 +151,6 @@ if($_POST['action'] == 'embassy'){
 	echo json_encode($returnData);
 }
 
-// $_POST['action'] = 'laboratory';
-// $_POST['direction'] = "War";
-
 if($_POST['action'] == 'laboratory'){
 
 	include(CLASS_PATH."laboratory.php");

@@ -1,3 +1,15 @@
+function addWarnings(selector, text){
+	selector.addClass('warning'); 
+	selector.after(' <p class = "warning-text"> '+text+' </p> ');
+}
+
+function validateField(sampleField){
+	if(sampleField.val() == ''){
+		sampleField.css("border", "1px solid #e57373");
+		throw new Error("The field was not inserted!");
+	}
+}
+
 function validateForm(sampleForm, type){
 
 	if(sampleForm.length === 0){
@@ -10,6 +22,13 @@ function validateForm(sampleForm, type){
 		case 'structure':
 			validateStructureForm(sampleForm);
 			break;
+	}
+}
+
+function validateParam(sampleParam){
+	if(sampleParam == null){
+		alert("Unexpected error: some parameter was not selected!");
+		throw new Error("Some parameter was not selected!");
 	}
 }
 
@@ -43,18 +62,4 @@ function validateStructureForm(sampleForm){
 
 	if(controlValidators !== sampleForm.find('input').length)
 		throw new Error("Some fields was not inserted!");
-}
-
-function addWarnings(selector, text){
-	selector.addClass('warning'); 
-	selector.after(' <p class = "warning-text"> '+text+' </p> ');
-}
-
-function validateField(sampleField){
-
-	if(sampleField.val() == ''){
-		sampleField.css("border", "1px solid #e57373");
-		throw new Error("The field was not inserted!");
-	}
-
 }

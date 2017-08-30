@@ -4,80 +4,133 @@
  */
 
 *{
-	transition: all 0.2s ease-in-out;
-	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+body{
+    margin: 0px;
+}
+
+button.remodal-cancel, button.remodal-confirm{
+    padding: 10px 15px;
 }
 
 input{
-	text-indent: 5px;
+    text-indent: 5px;
     padding: 3px 0px;
 }
 
-.acception{
-	border: 2px solid gold;;
-}
-
-
-.disabled{
-	background: #eee !important;
-    color: #ccc !important;
-}
-
-.black{
-	background: #4b4e53;
-}
-
-.blue{
-	background: #658abf;
-}
-
-.cian{
-	background: #66acb4;
-}
-
-.orange{
-	background: #e18a29;
-}
-
-.padding-bottom-55{
-	padding-bottom: 55px !important;
-}
-
-.pink{
-	background: #ec7162;
-}
-
-.red{
-	background: #c83605;
-}
-
-.skyblue{
-	background: #6fc5e8;
-}
-
-.yellow{
-	background: #f2bb56;
-}
-
-#main{
-	margin: 0 auto;
-	max-width: 1300px;
-	width: 100%;
-}
-
-#main header > h1.main-title, h2.subtitle{
+header > h1, header> h2{
 	margin: 100px auto;
 	text-align: center;
 }
 
-#main header > h2.subtitle{
+header > h2{
 	margin-top: 20px;
 }
 
-#main header > h1.main-title{
+header > h1{
 	margin-bottom: 20px;
+}
+
+footer{
+    background: #8c8c8c;
+    height: 45px;
+    padding-top: 1px;
+    text-align: center;
+    width: 100%;
+}
+
+footer > p a{
+    color: #00b;
+    text-decoration: none;
+    outline: none;
+}
+
+footer > p a:hover{
+    color: #fff;
+}
+
+.acception{
+    border: 2px solid gold;;
+}
+
+.disabled{
+    background: #eee !important;
+    color: #ccc !important;
+}
+
+.black{
+    background: #4b4e53;
+}
+
+.blue{
+    background: #658abf;
+}
+
+.cian{
+    background: #66acb4;
+}
+
+.fade-in-animation{
+	transition: opacity 4.42s ease-in-out;
+    -webkit-transition: opacity 4.42s ease-in-out;
+    -moz-transition: opacity 4.42s ease-in-out;
+    -o-transition: opacity 4.42s ease-in-out;
+    opacity: 0;
+    -moz-opacity: 0;
+    -o-opacity: 0;
+    -webkit-opacity: 0;
+}
+
+.orange{
+    background: #e18a29;
+}
+
+.padding-bottom-55{
+    padding-bottom: 55px !important;
+}
+
+.pink{
+    background: #ec7162;
+}
+
+.red{
+    background: #c83605;
+}
+
+.skyblue{
+    background: #6fc5e8;
+}
+
+.yellow{
+    background: #f2bb56;
+}
+
+#main{
+    margin: 0 auto;
+    max-width: 1300px;
+    width: 100%;
+}
+
+#up{
+    background: url(../img/up.png) center no-repeat;
+    background-size: contain;
+    border-radius: 100%;
+    cursor: pointer;
+    display: none;
+    height: 70px;
+    position: fixed;
+    right: 20%;
+    top: 85%;
+    width: 70px;
+}
+
+#up:hover{
+    background-image: url(../img/upHover.png);
 }
 
 .warning{
@@ -117,7 +170,7 @@ input{
 }
 
 #main #patterns > .wrapper .pattern:hover{
-	-webkit-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
     -moz-box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
     box-shadow: 4px 4px 74px 3px rgba(0,0,0,0.55);
 	padding: 25px;
@@ -142,7 +195,6 @@ input{
  * 1. Pattern's image
  *--------------]
  */
-
 
 #main #patterns > .wrapper .pattern img{
     display: block;
@@ -310,7 +362,7 @@ input{
 #mayor-meeting #conversation p{
     display: inline-block;
     float: left;
-    font-size: 22px;
+    font-size: 20px;
     padding-left: 20px;
     text-align: left;
     margin: 18% 0px;
@@ -329,27 +381,20 @@ input{
 	text-align: left;
 }
 
-
 /*[--------------
  * 6. Building
  *--------------]
  */
-#animation-content{
+
+#animation-building{
     background-size: cover !important;
     background-position: center !important;
     border-radius: 100%;
     display: block;
 	height: 400px;
     margin: 0 auto;
-    transition: opacity 4.3s ease-in-out;
-	-webkit-transition: opacity 4.3s ease-in-out;
-	-moz-transition: opacity 4.3s ease-in-out;
-	-o-transition: opacity 4.3s ease-in-out;
-    opacity: 0;
-    -moz-opacity: 0;
-    -o-opacity: 0;
-    -webkit-opacity: 0;
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
 }
 
 #construction-report{
@@ -503,7 +548,7 @@ input{
 
 #mass-media #conversation p span a:hover #partyName::-moz-placeholder{
 	color:#66bb6a;
-} 
+}
 
 #mass-media #conversation p span a:hover #partyName:-moz-placeholder{
 	color:#66bb6a;
@@ -560,7 +605,7 @@ input{
 
 #laboratory #conversation p#scientist-text{
     font-size: 20px;
-    margin: 14% 0;
+    margin: 13.5% 0;
     padding-left: 20px;
 	text-align: left;
 }
@@ -608,7 +653,8 @@ input{
     border-radius: 100%;
     height: 500px;
     margin: 0 auto;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
 }
 
 #research-content{
@@ -645,10 +691,79 @@ input{
     background: #c89625;
 }
 
+/*[--------------
+* 11. Source code
+*--------------]
+*/
 
+button.action{
+    border: none;
+    cursor: pointer;
+    display: none;
+    height: 38px;
+    outline: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+}
 
+button#source-code{
+    background: url(../img/sourceCode.png) center no-repeat;
+    background-size: contain;
+}
 
+button#source-code:hover{
+    background-image: url(../img/sourceCodeHover.png);
+}
 
+button#back-to-app{
+    background: url(../img/back.png) center no-repeat;
+    background-size: contain;
+}
 
+button#back-to-app:hover{
+    background: url(../img/backHover.png) center no-repeat;
+    background-size: contain;
+}
 
+.code-width{
+    max-width: none !important;
+}
 
+div.source{
+    background: #ccc;
+    display: none;
+    height: 600px;
+    margin-top: 20px;
+}
+
+div.source section#source-options{
+    height: 50px;
+    line-height: 47px;
+    width: 40%;
+}
+
+div.source section#source-options span{
+	color: #00f;
+	cursor: pointer;
+    float: left;
+    display: inline-block;
+    padding: 0px 20px 3px 20px;
+}
+
+div.source section#source-options span:first-child{
+    background: #eee;
+}
+
+div.source section#source-code-content{
+    background: #eee;
+    height: 550px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+div.source section#source-code-content article.code{
+    display: none;
+    text-align: left;
+}

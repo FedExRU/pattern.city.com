@@ -158,7 +158,7 @@ class HouseDoors implements Doors{
 }
 
 /*
- * structure - Absrtract factory
+ * Structure - Absrtract factory
  */
 
 interface Structure{
@@ -172,7 +172,7 @@ interface Structure{
 }
 
 /*
- * hospital - conserne factory
+ * Hospital - conserne factory
  */
 
 class Hospital implements Structure
@@ -221,7 +221,7 @@ class Hospital implements Structure
 }
 
 /*
- * supermarket - conserne factory 2
+ * Supermarket - conserne factory 2
  */
 
 class Supermarket implements Structure
@@ -270,7 +270,7 @@ class Supermarket implements Structure
 }
 
 /*
- * house - conserne factory
+ * House - conserne factory
  */
 
 class House implements Structure

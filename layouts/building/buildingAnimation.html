@@ -1,10 +1,8 @@
-<section id = "animation-content"> 
-	
-</section>
+<section class = "animation-content fade-in-animation" id = "animation-building"> </section>
 
-<section id = "construction-report"> 
+<section class = "after-animation" id = "construction-report"> 
 	<h1>Сonstruction report</h1>
-	<img id="completed-structure" src="assets/img/building/houseComplete.png" alt="Structure">
+	<img id="completed-structure" src="" alt="Structure">
 	<img id="clip" src="assets/img/building/clip.png" alt="Clip">
 	<article id = "report-titleing">
 		<h2>
@@ -68,13 +66,3 @@
 	</section>
 
 </section>
-
-<script>
-	$(document).ready(function(){
-		$('#animation-content').css("opacity", '1');
-		setTimeout(function() {
-			$('#animation-content').remove();
-			$('#construction-report').fadeIn(400);
-		}, 3500);
-	})
-</script>

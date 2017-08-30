@@ -5,12 +5,19 @@ class Government
 	 *
 	 * @var multione 
 	 *
-     * @var self
+	 * @var self 
+	 * 
+	 * @var data
+	 *
      */
 	private static $instances 	= array();
 
 	private static $personData 	= array();
-
+	/**
+	 *
+     * @return self
+     *
+     */
 	public static function getGovernmentPerson(array $data){
 		if(!isset($instances[$data['position']]) && !(self::$instances[$data['position']] instanceof self)){
 			self::$instances[$data['position']] = new self($data['position']);

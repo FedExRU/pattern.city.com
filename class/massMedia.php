@@ -1,7 +1,13 @@
-<?php 
+<?php
+
+/**
+*
+* @var observer 
+*
+*/
 
 /*
- * Observer - интерфейс, с помощью которого наблюдатель будет получать сообщения
+ * Observer - the interface by which the abstract observer will receive messages
  */
 
 interface EventSubscriber{
@@ -9,7 +15,7 @@ interface EventSubscriber{
 }
 
 /*
- * Observable - интерфейс, определяющий методы для оповещения и добавления наблюдателей, добавления событий 
+ * Observable - the interface that defines methods for notifying and adding observers, adding events
  */
 
 class Event{
@@ -49,7 +55,7 @@ class Event{
 }
 
 /*
- * Абстрактный наблюдатель
+ * Abstract observer
  */
 
 abstract class Media implements EventSubscriber{
@@ -73,6 +79,10 @@ abstract class Media implements EventSubscriber{
     abstract public function notify($obj);
 }
 
+/*
+ * Conserne observer 1
+ */
+
 class TelevisionMassMedia extends Media{
 
     function __construct(){
@@ -90,6 +100,10 @@ class TelevisionMassMedia extends Media{
         }
     }
 }
+
+/*
+ * Conserne observer 2
+ */
 
 class InternetMassMedia extends Media{
 

@@ -1,7 +1,13 @@
-<?php 
+<?php
 
 /**
-* Базовый объект исследования
+*
+* @var builder
+*
+*/
+
+/**
+* Basic product
 */
 class Technology
 {
@@ -9,11 +15,11 @@ class Technology
 	private $researchDirection;
 	private $researchTime;
 	/*
-	* Стек всех возможных технологий для исследования
+	* Full stack of all avaliable technologies
 	*/
 	private $techStack;
 	/*
-	* Имя исследованной технологии
+	* Technology data
 	*/
 	private $name;
 	private $image;
@@ -67,84 +73,84 @@ class Technology
 				'0' => array(
 					'name' => 'Banking',
 					'image' => 'banking.png',
-					'wiki' => ''
+					'wiki' => 'https://en.wikipedia.org/wiki/Bank'
 				),
 				'1' => array(
 					'name' => 'State Service',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'stateService.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Public_service'
 				),
 				'2' => array(
 					'name' => 'Industrialization',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'industrialization.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Industrialisation'
 				),
 				'3' => array(
 					'name' => 'Standardization',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'standardization.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Standardization'
 				),
 				'4' => array(
 					'name' => 'Fertilizers',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'fertilizers.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Fertilizer'
 				),
 				'5' => array(
 					'name' => 'Education',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'education.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Education'
 				),
 				'6' => array(
 					'name' => 'Philosophy',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'philosophy.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Philosophy'
 				),
 				'7' => array(
 					'name' => 'Culturology',
-					'image' => 'banking.png',
-					'wiki' => ''
+					'image' => 'сulturology.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Culturology'
 				)
 			),
 			'Medicine' 	=> array(
 				'0' => array(
 					'name' => 'Biology',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'biology.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Biology'
 				),
 				'1' => array(
 					'name' => 'Freezing',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'freezing.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Freezing'
 				),
 				'2' => array(
 					'name' => 'Plastics',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'plastics.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Plastic'
 				),
 				'3' => array(
 					'name' => 'Penicillin',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'penicillin.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Penicillin'
 				),
 				'4' => array(
 					'name' => 'Nuclear Physics',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'nuclearPhysics.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Nuclear_physics'
 				),
 				'5' => array(
 					'name' => 'Ecology',
 					'image' => 'ecology.png',
-					'wiki' => ''
+					'wiki' => 'https://en.wikipedia.org/wiki/Ecology'
 				),
 				'6' => array(
 					'name' => 'Nuclear Fusion',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'nuclearFusion.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Nuclear_fusion'
 				),
 				'7' => array(
 					'name' => 'Nanotechnology',
-					'image' => 'ecology.png',
-					'wiki' => ''
+					'image' => 'nanotechnology.png',
+					'wiki' => 'https://en.wikipedia.org/wiki/Nanotechnology'
 				)
 			),
 		);
@@ -183,7 +189,7 @@ class Technology
 }
 
 /**
-* Абстрактный исследователь
+* Abstract builder / researcher
 */
 
 abstract class Researcher
@@ -223,7 +229,7 @@ abstract class Researcher
 		$this->direction 	= $newDirection;
 	}
 	
-	public function search(){
+	public function newTech(){
 		$this->technology = new Technology();
 	}
 
@@ -241,7 +247,7 @@ abstract class Researcher
 }
 
 /**
-* Конкретный исследователь Военных технологий
+* Conserne builder 1
 */
 class WarResearcher extends Researcher
 {	
@@ -263,8 +269,9 @@ class WarResearcher extends Researcher
 }
 
 /**
-* Конкретный исследователь Медицинских технологий
+* Conserne builder 2
 */
+
 class MedicineResearcher extends Researcher
 {
 	function __construct(){
@@ -285,8 +292,9 @@ class MedicineResearcher extends Researcher
 }
 
 /**
-* Конкретный исследователь Социальных технологий
+* Conserne builder 3
 */
+
 class SocialResearcher extends Researcher
 {
 	function __construct(){
@@ -307,8 +315,9 @@ class SocialResearcher extends Researcher
 }
 
 /**
-* Лаборатория, отвечающая за исследование технологий исследователями
+* Director
 */
+
 class Laboratory
 {
 	private $researcher;
@@ -318,7 +327,7 @@ class Laboratory
 	}
 
 	public function searchTechnology(){
-		$this->researcher->search();
+		$this->researcher->newTech();
 		$this->researcher->chooseResearchMethod();
 		$this->researcher->chooseResearchDirection();
 		$this->researcher->chooseResearchTime();
